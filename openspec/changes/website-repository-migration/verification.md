@@ -20,3 +20,8 @@ Application history, native source, datasets and raw captures are not imported.
 Global browser audits also pass: 117 rendered states across four locales and
 8 interaction groups, plus 32 store layout/theme states and 8 availability pages.
 No page errors or failed assets were reported.
+
+China source was imported at the standalone repository root from `2664d0ec6`.
+`npm ci` and `npm run build` pass with six Chinese pages. All 20 China public
+files match the monorepo source byte-for-byte, including both regional QR images.
+The checked-in workflow uses root paths and produces a China preview artifact.

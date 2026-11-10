@@ -227,3 +227,5 @@ body { font-family: var(--vp-font-family-base); font-size: var(--ssc-body); }
 @media (prefers-reduced-motion: reduce) {
   .ssc-site *, .ssc-site *::before, .ssc-site *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+.ssc-store-pending { color: var(--ssc-muted); font-size: var(--ssc-small); }

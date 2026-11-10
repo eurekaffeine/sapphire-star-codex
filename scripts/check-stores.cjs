@@ -5,8 +5,8 @@ const http = require('node:http');
 const { chromium } = require('playwright');
 
 const dist = path.resolve('.vitepress/dist');
-const output = path.resolve(process.env.SSC_STORE_AUDIT_OUTPUT || '.codex/audit-evidence/website-store-badges');
-const base = '/sapphire-star-codex/';
+const output = path.resolve(process.env.SSC_STORE_AUDIT_OUTPUT || '.codex/audit-evidence/website-china-stores');
+const base = '/';
 const expected = 'https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare';
 const mime = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const report = { states: [], errors: [] };
@@ -32,24 +32,20 @@ const server = http.createServer(async (req,res) => {
     const page=await context.newPage();
     page.on('pageerror',error=>report.errors.push(error.message));
     page.on('response',response=>{if(response.status()>=400) report.errors.push(`${response.status()} ${response.url()}`);});
-    for (const [locale,available,pending,apple,google,gallery] of [
-      ['', 'Available now','Coming soon','en','en','en.png'],
-      ['zh-hans/','现已上架','尚未上架','zh-hans','zh-hans','en.png'],
-      ['zh-hant/','現已上架','尚未上架','zh-hant','zh-hant','en.png'],
-      ['ja-jp/','配信中','近日公開','jp','ja','jp.svg'],
-    ]) {
+    for (const locale of ['']) {
+      const available='现已上架', pending='尚未上架';
       for (const width of [320,390,768,1440]) {
         for (const theme of ['light','dark']) {
           await page.setViewportSize({width,height:900});
           const response=await page.goto(origin+locale,{waitUntil:'networkidle'});
-          assert(response?.ok(),`Failed page response: ${locale||'en/'}`);
+          assert(response?.ok(),`Failed page response: ${locale||'zh-Hans/'}`);
           await page.evaluate(theme=>{
             document.documentElement.classList.toggle('dark',theme==='dark');
             localStorage.setItem('vitepress-theme-appearance',theme);
           },theme);
           const section=page.locator('#download');
           await section.scrollIntoViewIfNeeded();
-          assert.equal(await section.locator('img').count(),3);
+          assert.equal(await section.locator('img').count(),2);
           assert.equal(await section.locator('a').count(),1);
           assert.equal(await section.locator('a').getAttribute('href'),expected);
           assert.equal(await section.locator('a').getAttribute('target'),'_blank');
@@ -57,12 +53,14 @@ const server = http.createServer(async (req,res) => {
           assert.equal(await page.locator('.ssc-updates').count(),0);
           assert.equal(await section.locator('.ssc-store-status').count(),0);
           const visibleText = await section.innerText();
-          assert(!visibleText.includes(available) && !visibleText.includes(pending));
-          assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),2);
+          assert(visibleText.includes('Android 国内版') && visibleText.includes(pending));
+          assert(!visibleText.includes('Google Play'));
+          assert.equal(await section.locator('[data-store=android] a').count(),0);
+          assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),1);
           assert.equal(await section.locator('.pending a, .pending[tabindex]').count(),0);
           const images=section.locator('img');
-          const names=[`app-store-badge-${apple}.svg`,`google-play-badge-${google}.png`,`app-gallery-badge-${gallery}`];
-          for (let i=0;i<3;i++) {
+          const names=['app-store-badge-zh-hans.svg','app-gallery-badge-en.png'];
+          for (let i=0;i<2;i++) {
             const image=images.nth(i);
             await image.evaluate(img=>img.decode());
             assert.equal(await image.getAttribute('src'),`${base}badges/${names[i]}`);
@@ -79,12 +77,9 @@ const server = http.createServer(async (req,res) => {
           await page.keyboard.press('Tab');
           assert.equal(await page.evaluate(()=>Boolean(document.activeElement?.closest('.pending'))),false);
           assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Page overflow');
-          report.states.push({locale:locale||'en/',width,theme,link:expected,available,pending});
-          const save=(locale===''&&width===1440&&theme==='light')
-            ||(locale==='zh-hans/'&&width===390&&theme==='light')
-            ||(locale==='zh-hant/'&&width===1440&&theme==='dark')
-            ||(locale==='ja-jp/'&&width===320&&theme==='dark');
-          if (save) await section.screenshot({path:path.join(output,`${locale?locale.slice(0,-1):'en'}-${width}-${theme}.jpg`),type:'jpeg',quality:78});
+          report.states.push({locale:locale||'zh-Hans/',width,theme,link:expected,available,pending});
+          const save = [390,1440].includes(width);
+          if (save) await section.screenshot({path:path.join(output,`${locale?locale.slice(0,-1):'zh-hans'}-${width}-${theme}.jpg`),type:'jpeg',quality:78});
         }
       }
       for (const route of ['faq/','others/']) {
@@ -95,6 +90,6 @@ const server = http.createServer(async (req,res) => {
     }
     assert.deepEqual(report.errors,[]);
     await fs.writeFile(path.join(output,'results.json'),JSON.stringify(report,null,2));
-    console.log(`Verified ${report.states.length} localized responsive/theme store states and 8 availability pages.`);
+    console.log(`Verified ${report.states.length} China responsive/theme store states and 2 availability pages.`);
   } finally { await browser.close(); await new Promise(resolve=>server.close(resolve)); }
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

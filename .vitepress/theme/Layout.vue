@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
-import { locales } from './content'
+import { locale } from './content'
 import LandingPage from './components/LandingPage.vue'
 
-const { frontmatter, lang, page } = useData()
-const locale = computed(() => Object.values(locales).find(item => item.lang === lang.value) ?? locales.root)
+const { frontmatter, page } = useData()
 </script>
 
 <template>

@@ -1,23 +1,25 @@
-# About & support
+# 关于苍蓝星图鉴
 
-## The app
-**Sapphire Star Codex** is an independently developed, non-commercial Monster Hunter companion from the creator of [Pocket Gallery](https://eurekaffeine.github.io/pocket-gallery/).
+## 应用介绍
+苍蓝星图鉴（Sapphire Star Codex）是一款面向怪物猎人玩家的资料查询与配装搜索应用，由 [破壳萌图鉴](https://www.pocket-gallery.cn/) 的开发者独立制作。项目以非商业方式运营，不含广告，也不设付费功能。
 
-It brings game-specific reference data and equipment planning into a focused native app. No ads, no paywalls.
+## 支持我们
 
-HarmonyOS is available on [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare). iOS and Android releases are being prepared.
+您可以通过[支持我们](../support/)页面，使用支付宝或微信支付自愿赞助后续开发与资料维护。赞助不影响任何功能的使用。
 
-## Support the project
-Optional contributions through Alipay or WeChat Pay are available on [Support us](../support/). They do not unlock app features or benefits.
+## 反馈与协作
+鸿蒙版已在[华为应用市场](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。iOS 与 Android 国内版正在准备发布。
 
-Help by sharing the site, checking translations, and reporting reproducible data issues. Include the game and expansion, entity name, language, expected value, and a source or steps to reproduce. Do not include personal information in screenshots.
+欢迎协助核对游戏资料、完善翻译，或向其他玩家分享本网站。
 
-Development and future contact channels can be found on the [developer’s public profile](https://github.com/eurekaffeine). This website does not currently collect feedback through a form.
+报告资料问题时，请注明游戏与扩展内容、怪物或装备名称、使用语言及具体问题，并附上可核实的来源或复现步骤。提交截图前，请遮盖个人信息。
 
-## Data and artwork
-Game data is extracted and normalized into separate datasets for each supported game. Sources include [MHDB Wilds](https://docs.wilds.mhdb.io/), [MHW DB](https://mhw-db.com/) and game-file extraction, with community references for cross-checking. Data can contain gaps or errors; no claim of perfect or complete coverage is made.
+开发者信息与后续联系方式可通过[开发者主页](https://github.com/eurekaffeine)了解。本网站目前不通过表单收集反馈。
 
-## Disclaimer
-This is the Sapphire Star Codex project's website. The app is **not affiliated with, endorsed by, or supported by CAPCOM**. Monster Hunter names, designs, official icons and underlying game data belong to CAPCOM Co., Ltd. This is a non-commercial fan project. Rights-holder removal requests will be respected.
+## 资料来源
+资料按游戏独立提取与整理，来源包括 [MHDB Wilds](https://docs.wilds.mhdb.io/)、[MHW DB](https://mhw-db.com/) 与游戏文件，并参考社区资料进行交叉核对。部分内容可能存在缺失或错误，将持续补充与修正。
 
-The website layout adapts Pocket Gallery’s MIT-licensed VitePress components. That code license does not apply to game artwork or game data.
+## 版权与声明
+苍蓝星图鉴由游戏爱好者独立开发，以非商业方式运营，与 CAPCOM 无关联，亦未获其认可或支持。Monster Hunter 的名称、设计、官方图标与游戏数据归 CAPCOM Co., Ltd. 所有。如权利人要求移除相关内容，项目将配合处理。
+
+网站基于 Pocket Gallery 中采用 MIT 许可的 VitePress 组件改编。该许可仅适用于代码，不涵盖游戏美术与数据。

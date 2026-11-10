@@ -1,71 +1,72 @@
 ---
-description: "Privacy policy for the Sapphire Star Codex apps and website: local data, backups, support messages, deletion and contact."
+description: "苍蓝星图鉴应用与网站的隐私政策，说明本地数据、设备备份、邮件联系、数据保留与删除方式。"
 ---
 
-# Privacy Policy
+# 隐私政策
 
-Effective: October 31, 2026 · Last updated: November 10, 2026
+生效日期：2026 年 10 月 31 日<br>
+更新日期：2026 年 11 月 10 日（补充自愿赞助及中国版网站说明）
 
-This policy covers Sapphire Star Codex, its iOS, Android and HarmonyOS apps, and this website. The developer is **eurekaffeine (刘耀晨)**. Privacy questions can be sent to [eurekaffeine.work@gmail.com](mailto:eurekaffeine.work@gmail.com).
+本政策适用于苍蓝星图鉴（Sapphire Star Codex）的 iOS、Android 与鸿蒙版应用，以及本网站。开发者为 **eurekaffeine（刘耀晨）**。如有隐私相关问题，请联系 [eurekaffeine.work@gmail.com](mailto:eurekaffeine.work@gmail.com)。
 
-The apps are in development and features vary by platform. The practices described here apply to the current apps and website. You do not need an account to use the app.
+鸿蒙版已上架，iOS 与 Android 版正在准备发布，各平台的功能可能有所不同。以下说明当前应用与网站的数据处理方式。使用应用无需注册账号。
 
-## Data kept on your device
+## 本地数据
 
-The app keeps data locally to remember your choices and provide its features. Depending on the platform and features you use, this includes:
+应用为保留设置并提供相关功能，会在设备上保存数据。根据所使用的平台与功能，可能包括：
 
-- Your selected game, language, appearance and other preferences.
-- Search history and browsing state used to resume a screen.
-- Saved monsters, equipment and other reference entries.
-- Saved builds, custom build names, decoration counts, talismans and armor inventory.
+- 游戏、语言、外观等设置。
+- 搜索记录与用于恢复浏览位置的页面状态。
+- 收藏的怪物、装备等资料。
+- 保存的配装、自定义配装名称、装饰品数量、护石和防具库存。
 
-The app uses this information for browsing, search, saved entries and equipment planning. It does not upload these records to the developer or operate a developer-run account or cloud-sync service.
+这些数据用于资料浏览、搜索、收藏与配装。应用不会将其上传给开发者，开发者也未运营账号或云同步服务。
 
-## Permissions and automatic collection
+## 权限与自动收集
 
-The current apps do not include advertising, tracking, analytics or automatic crash-upload SDKs. They do not ask for access to your contacts, location, camera, microphone or photo library for their current features, and do not collect advertising identifiers.
+当前应用未集成广告、追踪、使用统计或自动上传崩溃报告的 SDK。现有功能无需访问通讯录、位置、相机、麦克风或相册，也不收集广告标识符。
 
-Your operating system or app store may separately process installation and diagnostic information under its own settings and policies. If a platform makes diagnostics available to us, we use them to investigate app issues.
+操作系统与应用商店可能根据各自的设置与政策，独立处理安装或诊断信息。平台提供给开发者的诊断信息仅用于排查应用问题。
 
-## When you contact us
+## 邮件联系
 
-If you email us, we receive your email address, the message and any attachments you choose to send. We use that information to answer you, investigate reported problems and handle privacy requests. Please include only what is needed for your request. We do not use support correspondence for advertising or mailing lists.
+通过电子邮件联系开发者时，开发者会收到您的邮箱地址、邮件内容及主动提供的附件。这些信息仅用于回复、排查问题与处理隐私请求，不用于广告或营销邮件。请仅提供处理问题所需的信息。
 
-## Website, backups and other services
+## 网站、备份和其他服务
 
-**Website.** This site is hosted on GitHub Pages. We do not add analytics, advertising cookies or tracking pixels. Site search runs in your browser, and display/search preferences may be stored there. GitHub receives technical request information when you visit, such as your IP address and browser details. Its handling is described in [GitHub’s privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+**网站托管。** 本网站未添加访问统计、广告 Cookie 或追踪像素。站内搜索在浏览器中执行，显示与搜索偏好也可能保存在浏览器中。网站托管服务为提供页面，可能处理 IP 地址、浏览器信息等技术请求信息。国际版网站由 GitHub Pages 托管，其处理方式请参阅 [GitHub 隐私声明](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)。
 
-**Optional contributions.** If you choose to support the developer through Alipay or WeChat Pay, the payment is processed in that service under its terms and privacy policy. This website displays static payment QR images; it does not embed a payment SDK or receive payment credentials. The developer may see transaction details made available to the recipient, such as the amount, time, payer display name and payment note. These records are used to verify contributions and resolve payment questions, and are retained within the payment service subject to its controls and applicable record-keeping requirements.
+**自愿赞助。** 如您选择通过支付宝或微信支付支持开发者，付款由相应平台依其条款与隐私政策处理。本网站仅展示静态收款二维码，不嵌入支付 SDK，也不会接收支付凭据。开发者可能查看支付平台向收款方提供的交易信息，例如金额、时间、付款人显示名称与付款备注。这些记录用于核对赞助款项和处理付款问题，并按支付平台的管理规则及适用的记录保留要求保留。
 
-**Device backups.** Your operating system may include app data in device or cloud backups, depending on your settings. Those backups are managed by your platform provider, not by us. We cannot access or delete them for you.
+**设备备份。** 根据系统设置，应用数据可能包含在设备备份或云备份中。备份由相应的平台服务商管理，开发者无法代为读取或删除。
 
-**Email and external links.** Our support mailbox uses Gmail; messages are processed by Google to provide email services under [Google’s privacy policy](https://policies.google.com/privacy). External websites and app stores apply their own privacy policies when you open them. Hosting, email and backup providers may process information in countries other than yours.
+**邮件与外部链接。** 开发者使用 Gmail 接收邮件，Google 根据 [Google 隐私政策](https://policies.google.com/privacy)处理提供邮件服务所需的信息。访问外部网站或应用商店时，适用相应服务的隐私政策。网站托管、邮件与备份服务商可能在您所在国家或地区以外处理信息。
 
-## Sharing, retention and deletion
+## 数据共享、保留与删除
 
-We do not sell or rent your personal information, or share it for advertising. Information you send us is handled through the email provider described above. We may disclose information we actually hold when required by law or when you specifically ask us to do so.
+开发者不会出售、出租个人信息，也不会为广告目的共享个人信息。联系邮件由上述邮件服务商处理。在法律要求或您明确提出相应请求时，开发者可能提供其实际持有的信息。
 
-- **Local app data** stays until you remove it using available app controls or device settings. To remove local data, use the device option that deletes the app and its data. Offloading or archiving may keep that data. Backups can remain separately and may restore data when you reinstall.
-- **Website preferences** remain in your browser until you clear this site’s stored data or your browser removes it.
-- **Support messages and shared diagnostics** are kept only while needed to handle and follow up on the issue, or to meet a legal obligation. You can ask us to delete information you sent us, unless we are legally required to retain it.
-- **Provider-held data**, including backups and hosting logs, is subject to the provider’s retention rules and controls.
+- **应用数据：** 可通过应用现有的删除功能或设备设置清理。清理本地数据时，请选择同时删除应用与数据的选项。保留数据的卸载或归档方式不会清除本地资料。备份需单独管理，重新安装时也可能恢复备份数据。
+- **网站偏好：** 保存在浏览器中，直至您清除本网站的数据或浏览器自动清理。
+- **邮件与主动提供的诊断信息：** 仅在处理问题、后续跟进或履行法律义务所需的期间保留。您可请求删除已提供的信息，法律要求保留的情况除外。
+- **服务商持有的数据：** 包括备份与网站访问日志，由服务商依其规则保留与管理。
 
-To request access to, correction of or deletion of information you sent us, use the contact address below. We cannot remotely access or erase records stored only on your device.
+如需查阅、更正或删除已向开发者提供的信息，请通过下方邮箱联系。仅保存在设备上的记录，开发者无法远程读取或删除。
 
-## Security
+## 数据安全
 
-Local app data uses the operating system’s application storage protections. This website uses HTTPS. We limit access to support correspondence to handling support and privacy requests, using the email provider’s security controls.
+本地数据受操作系统提供的应用存储机制保护。本网站使用 HTTPS。开发者仅为处理支持与隐私请求而访问相关邮件，并使用邮件服务商提供的安全措施。
 
-## Children’s privacy
+## 儿童和未成年人的隐私
 
-The app does not require a personal profile or date of birth, and we do not knowingly solicit personal information from children. If a parent or guardian believes a child has sent us personal information, please contact us so we can address its removal.
+使用应用无需填写个人资料或出生日期，开发者不会有意向儿童收集个人信息。如家长或监护人认为儿童曾向开发者提供个人信息，请联系开发者处理删除事宜。
 
-## Policy changes
+## 政策更新
 
-We will update this page and its date when our practices change. Material changes will be explained on the website or in the app’s release information. If a new feature needs a separate permission or consent, it will ask for it; this policy does not grant that permission by itself.
+数据处理方式变更时，本政策与更新日期将相应调整。重要变更将通过网站或应用更新说明告知。新功能如需另行申请权限或取得同意，将在相应操作时提出；本政策本身不构成对相关操作的授权或同意。
 
-## Contact
+## 联系我们
 
-Developer: **eurekaffeine (刘耀晨)**<br>
-App: **Sapphire Star Codex**<br>
-Email: [eurekaffeine.work@gmail.com](mailto:eurekaffeine.work@gmail.com)
+开发者：**eurekaffeine（刘耀晨）**<br>
+应用：**苍蓝星图鉴 / Sapphire Star Codex**<br>
+邮箱：[eurekaffeine.work@gmail.com](mailto:eurekaffeine.work@gmail.com)

@@ -1,9 +1,9 @@
 import { readdir, readFile, stat } from 'node:fs/promises'
-import { resolve, relative, dirname } from 'node:path'
+import { resolve, relative } from 'node:path'
 import { createHash } from 'node:crypto'
 
 const root = resolve('.vitepress/dist')
-const base = '/sapphire-star-codex/'
+const base = '/'
 const files = []
 async function walk(dir) {
   for (const item of await readdir(dir, { withFileTypes: true })) {
@@ -17,7 +17,7 @@ const errors = []
 if (files.some(file => relative(root, file).split('/').includes('release-notes'))) errors.push('Removed development pages remain in the build')
 const stores = JSON.parse(await readFile(resolve('.vitepress/theme/store-links.json'),'utf8'))
 const expectedGallery = 'https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare'
-if (stores.appGallery!==expectedGallery || stores.appStore!==null || stores.googlePlay!==null) errors.push('Unverified store availability or wrong product URL')
+if (stores.appGallery!==expectedGallery || stores.appStore!==null || stores.androidChina!==null || 'googlePlay' in stores) errors.push('Unverified store availability or wrong product URL')
 const htmlFiles = files.filter(file => file.endsWith('.html'))
 const html = new Map(await Promise.all(htmlFiles.map(async file => [file, await readFile(file, 'utf8')])))
 for (const [file, content] of html) {
@@ -46,7 +46,7 @@ for (const [file, content] of html) {
     }
   }
 }
-for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
+for (const locale of ['']) {
   for (const page of ['', 'faq/', 'others/', 'privacy/', 'support/']) {
     if (!html.has(resolve(root, locale, page, 'index.html'))) errors.push(`Missing localized page: ${locale}${page}`)
   }
@@ -60,15 +60,14 @@ for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
   if (!landing?.includes(`href="${base}${locale}support/"`)) errors.push(`Missing localized support navigation: ${locale || 'en/'}`)
   if (landing) {
     const section = landing.match(/<section id="download"[\s\S]*?<\/section>/)?.[0] || ''
-    if ((section.match(/<img\b/g)||[]).length!==3 || (section.match(/<a\b/g)||[]).length!==1
-      || (section.match(/aria-disabled="true"/g)||[]).length!==2
-      || !section.includes(expectedGallery.replaceAll('&','&amp;')) || !section.includes('rel="noopener noreferrer"')) errors.push(`Incorrect badge/link/state contract: ${locale||'en/'}`)
-    if (landing.includes('class="ssc-updates"') || section.includes('ssc-store-status')) errors.push(`Removed development section or store status labels remain: ${locale||'en/'}`)
-    const badgeLocale = {'':'en','zh-hans/':'zh-hans','zh-hant/':'zh-hant','ja-jp/':'jp'}[locale]
-    const googleLocale = badgeLocale==='jp'?'ja':badgeLocale
-    const galleryFile = badgeLocale==='jp'?'app-gallery-badge-jp.svg':'app-gallery-badge-en.png'
-    for (const badge of [`app-store-badge-${badgeLocale}.svg`,`google-play-badge-${googleLocale}.png`,galleryFile]) {
-      if (!section.includes(`${base}badges/${badge}`)) errors.push(`Wrong localized badge: ${locale}/${badge}`)
+    if ((section.match(/<img\b/g) || []).length !== 2 || (section.match(/<a\b/g) || []).length !== 1
+      || (section.match(/aria-disabled="true"/g) || []).length !== 1
+      || !section.includes(expectedGallery.replaceAll('&', '&amp;'))
+      || !section.includes('Android 国内版') || !section.includes('尚未上架')
+      || !section.includes('rel="noopener noreferrer"')) errors.push('Incorrect China download links or availability')
+    if (/Google Play|google-play|play\.google/.test(section)) errors.push('Global Android store remains in China downloads')
+    for (const badge of ['app-store-badge-zh-hans.svg', 'app-gallery-badge-en.png']) {
+      if (!section.includes(`${base}badges/${badge}`)) errors.push(`Wrong China badge: ${badge}`)
     }
     const captions = [...landing.matchAll(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/g)]
     if (captions.length !== 0) {
@@ -77,7 +76,7 @@ for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
   }
 }
 const badgeManifest = JSON.parse(await readFile(resolve(root,'badges/manifest.json'),'utf8'))
-if (badgeManifest.assets.length!==10) errors.push('Incomplete badge asset set')
+if (badgeManifest.assets.length!==2) errors.push('Incomplete badge asset set')
 for (const asset of badgeManifest.assets) {
   const buffer = await readFile(resolve(root,'badges',asset.file))
   if (createHash('sha256').update(buffer).digest('hex')!==asset.sha256) errors.push(`Modified badge artwork: ${asset.file}`)
@@ -86,7 +85,7 @@ for (const asset of badgeManifest.assets) {
 const screenshots = JSON.parse(await readFile(resolve(root, 'screenshots/manifest.json'), 'utf8'))
 const imageAssets = ['icon.png', 'social.jpg', 'frames/iphone-18-pro.png', 'frames/iphone-18-pro-screen-mask.png']
 const payments = JSON.parse(await readFile(resolve(root, 'support/manifest.json'), 'utf8'))
-const paymentSources = { alipay: 'e2ba3809c69e5bb8fa175765137c6f1553bf4fc3', wechat: 'c93d8e3ade1511a37dc9ad33d98cbd1656a795df' }
+const paymentSources = { alipay: 'bc73b73480bd077ccd3b64c47942bbc86308ed1c', wechat: '2b9ffb1ecc00b6f75c1ddfd6d799464b53365a6e' }
 if (payments.assets?.length !== 2) errors.push('Incomplete support QR set')
 for (const [provider, originalBlob] of Object.entries(paymentSources)) {
   const asset = payments.assets?.find(asset => asset.provider === provider)
@@ -97,7 +96,8 @@ for (const [provider, originalBlob] of Object.entries(paymentSources)) {
     || buffer.length !== asset.bytes || createHash('sha256').update(buffer).digest('hex') !== asset.sha256) errors.push(`Modified original payment QR: ${provider}`)
   imageAssets.push(`support/${asset.file}`)
 }
-const expectedLanguages = ['en', 'zh-Hans', 'zh-Hant', 'ja']
+const expectedLanguages = ['zh-Hans']
+if (Object.keys(screenshots.locales).join(',') !== 'zh-Hans') errors.push('Non-Chinese screenshots remain')
 const expectedTopics = ['home', 'hitzones', 'weapon', 'builder', 'saved']
 if (screenshots.schemaVersion !== 2 || screenshots.deviceFrame !== 'iPhone 18 Pro'
   || screenshots.captureSettings?.silhouetteMonsters !== false || screenshots.captureSettings?.showGameLogos !== true) errors.push('Unexpected screenshot contract')
@@ -125,5 +125,24 @@ for (const name of imageAssets) {
   if ((await stat(file)).size > 300_000) errors.push(`Unoptimized website asset: ${name}`)
 }
 
+const expectedPages = ['404.html', 'index.html', 'faq/index.html', 'others/index.html', 'privacy/index.html', 'support/index.html']
+if (JSON.stringify(htmlFiles.map(file => relative(root, file)).sort()) !== JSON.stringify(expectedPages.sort())) errors.push('Unexpected China page set')
+const origin = process.env.SSC_SITE_ORIGIN?.replace(/\/$/, '')
+for (const [file, content] of html) {
+  if (!content.includes('<html lang="zh-Hans"')) errors.push(`Wrong page language: ${relative(root, file)}`)
+  if (/class="VPNavBarTranslations|class="VPNavScreenTranslations/.test(content)) errors.push('Language selector remains')
+  if (/href="\/(?:zh-hans|zh-hant|ja-jp)\//.test(content)) errors.push('Localized subdirectory link remains')
+  if (origin && !file.endsWith('/404.html')) {
+    const path = relative(root, file).replace(/index\.html$/, '')
+    if (!content.includes(`rel="canonical" href="${origin}/${path}"`)) errors.push(`Incorrect canonical URL: ${path}`)
+  } else if (!origin && !content.includes('content="noindex, nofollow"')) errors.push('Preview missing noindex')
+}
+const robots = await readFile(resolve(root, 'robots.txt'), 'utf8')
+if (origin) {
+  if (!robots.includes(`Sitemap: ${origin}/sitemap.xml`)) errors.push('Wrong China robots sitemap')
+  const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8')
+  if (/zh-hans|zh-hant|ja-jp|github\.io/.test(sitemap)) errors.push('Non-China sitemap routes')
+} else if (files.includes(resolve(root, 'sitemap.xml')) || !robots.includes('Disallow: /')) errors.push('Preview incorrectly indexable')
+if (files.some(file => /(?:screenshots\/(?:en|ja|zh-Hant)\/|google-play-badge)/.test(relative(root, file)))) errors.push('Non-China public assets remain')
 if (errors.length) throw new Error(errors.join('\n'))
-console.log(`Verified ${htmlFiles.length} built pages: localized routes, links, anchors, Pages base, image payloads and all 20 matching-language iPhone frames.`)
+console.log(`Verified ${htmlFiles.length} built pages: China routes, links, anchors, metadata, mainland stores, exact China QR assets and five Simplified Chinese iPhone frames.`)

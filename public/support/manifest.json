@@ -6,20 +6,21 @@
       "file": "qr_alipay.jpg",
       "width": 1200,
       "height": 1800,
-      "bytes": 212997,
-      "sha256": "e901a29479c502f720866ac67468a23d02c6e855334b57dd2e385dc512bb1381",
-      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/dde2a9013701f304497e2b396d45aadd3d821a4c/docs/.vuepress/public/qr_alipay.jpg",
-      "sourceGitBlob": "e2ba3809c69e5bb8fa175765137c6f1553bf4fc3"
+      "bytes": 243613,
+      "sha256": "b3260b777a0c9cd213bb2e77d33b6fdab989dad5c24636e0d9755c73b5815b2a",
+      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/1d8d4b551b424d170d403c6bd03b4b23075014a8/docs/.vuepress/public/qr_alipay.jpg",
+      "sourceGitBlob": "bc73b73480bd077ccd3b64c47942bbc86308ed1c"
     },
     {
       "provider": "wechat",
       "file": "qr_wechat.jpg",
       "width": 828,
       "height": 1124,
-      "bytes": 140101,
-      "sha256": "0b8ce587a8ca2db8f8527dfe61b0f9e6a721b41168ea0c84a23f3415eb3b8f52",
-      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/dde2a9013701f304497e2b396d45aadd3d821a4c/docs/.vuepress/public/qr_wechat.jpg",
-      "sourceGitBlob": "c93d8e3ade1511a37dc9ad33d98cbd1656a795df"
+      "bytes": 111636,
+      "sha256": "8113a1793027e12880a34f06a76a1cfcb72a623dac79732d51d02c09b9b53180",
+      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/1d8d4b551b424d170d403c6bd03b4b23075014a8/docs/.vuepress/public/qr_wechat.jpg",
+      "sourceGitBlob": "2b9ffb1ecc00b6f75c1ddfd6d799464b53365a6e"
     }
-  ]
+  ],
+  "sourceBranch": "china-version"
 }

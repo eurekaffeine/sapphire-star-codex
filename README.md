@@ -1,20 +1,11 @@
-# Sapphire Star Codex website
+# 苍蓝星图鉴 — China website
 
-This repository contains the editable website source and the GitHub Pages deployment.
-Website code moved here from `MonsterHunterDex/sapphire-star-codex/` on 2026-11-10.
-
-| Branch | Purpose |
-|---|---|
-| `main` | Global source: English, Simplified Chinese, Traditional Chinese and Japanese |
-| `china-version` | China source: Simplified Chinese, mainland download information and China QR codes |
-| `gh-pages` | Compiled global site served by GitHub Pages |
-
-Live global site: <https://eurekaffeine.github.io/sapphire-star-codex/>.
-
-## Develop
+The `china-version` branch is the Simplified Chinese edition of Sapphire Star Codex.
+It follows [Pocket Gallery China](https://www.pocket-gallery.cn/): Chinese content at
+the site root, a link to the global website, domestic download information and the
+original China-edition Alipay/WeChat support codes.
 
 ```sh
-git clone https://github.com/eurekaffeine/sapphire-star-codex.git
 cd sapphire-star-codex
 npm ci
 npm run dev
@@ -22,52 +13,72 @@ npm run build
 npm run preview
 ```
 
-For the China edition, check out `china-version` before building. All commands run
-at repository root. Building needs only Node.js 22 and checked-in optimized assets;
-no app checkout, simulator, game data or Git LFS downloads are needed.
+Only five content routes are generated: `/`, `/faq/`, `/others/`, `/support/` and
+`/privacy/`, plus a Chinese 404 page. There is no language selector or alternate
+locale payload. The app code and its supported languages are unchanged.
 
-## Source layout
+## Repository
 
-- `.vitepress/`: configuration, components, styles, localized copy and store links.
-- `index.md`, `faq/`, `others/`, `support/`, `privacy/`: English pages.
-- `zh-hans/`, `zh-hant/`, `ja-jp/`: localized pages on the global branch.
-- `public/`: original licensed assets and optimized native screenshots with manifests.
-- `scripts/`: build validation, browser audits, deployment and optional asset tools.
-- `openspec/`: website specification and change records, excluded from the built site.
+This is the canonical standalone website source repository. `main` contains the
+global edition, `china-version` contains this China edition, and `gh-pages` serves
+the compiled global site. Run commands at this repository root; the website no
+longer lives inside the app monorepo.
 
-Native apps, datasets, raw captures and historical app evidence remain in the
-private MonsterHunterDex repository. This repository imports website snapshots,
-not private application history. See `ASSETS.md` for asset and license provenance.
+## Hosting
 
-## Verify
+This branch is prepared for a static China host at `/`. The domain and host have
+not been selected. Default builds are previews: no canonical URL or sitemap, and
+`noindex` metadata plus `Disallow: /` in robots.txt.
 
-`npm run build` validates 21 global pages, links, anchors, locale/base routing,
-store availability, original QR files and all 20 matching-language screenshots.
-`npm run audit:ux` verifies responsive gallery controls, navigation, search, themes,
-keyboard and touch. `npm run audit:stores` checks download presentation and links.
-Both browser audits save ignored evidence under `.codex/audit-evidence/`.
+When a domain is confirmed, build with its HTTPS origin:
 
-Browser audits use Google Chrome by default. Alternatively, run
-`npx playwright install chromium` and set `PLAYWRIGHT_CHANNEL=chromium`.
+```sh
+SSC_SITE_ORIGIN=https://your-confirmed-domain.example npm run build
+```
 
-Asset regeneration is optional: run
-`python3 scripts/prepare-assets.py --source-root /path/to/MonsterHunterDex` with
-Python/Pillow and populated raw captures. `--refresh-branding` also uses the original
-app icon. `prepare-iphone-frame.py` requires Apple Simulator chrome and Poppler;
-its outputs are checked in, so normal builds do not need these tools.
+That value supplies canonical/social URLs, sitemap and robots.txt. It must contain
+only the origin, without a path. Replace the illustrative domain with the real one;
+do not publish the example. Update the privacy policy with the actual hosting
+provider and add registration details only when confirmed for this site.
 
-## Publish
+Publish only `.vitepress/dist/` to the chosen host. The global GitHub Pages deploy
+command is deliberately absent from this regional branch. Do not copy Pocket
+Gallery's domain, ICP/public-security registration or deployment credentials.
 
-Source changes go through a branch and PR; never push directly to main. CI builds
-PRs and both source branches and uploads artifacts. It does not publish automatically.
+The global website remains at <https://eurekaffeine.github.io/sapphire-star-codex/>.
+`.github/workflows/website.yml` validates this branch and produces a
+`website-china-preview` artifact; it does not deploy either website.
 
-When global publication is requested, run `npm run deploy` from the global source.
-It builds and validates, then commits only `.vitepress/dist/` onto this repository's
-`gh-pages` branch. Pages continues to serve that branch at `/`; its public URL/base
-remains `/sapphire-star-codex/`. The source migration does not deploy or change Pages
-settings. The China branch has separate host configuration and no global deploy command.
+## Content and assets
 
-HarmonyOS links to the verified Sapphire Star Codex listing. Apple/Google remain
-pending until actual URLs are verified. Voluntary support uses the global Pocket
-Gallery payment images on main and the distinct China images on china-version;
-contributions never unlock app features.
+- `.vitepress/theme/content.ts`: Chinese metadata and landing copy.
+- `.vitepress/config.mts`: root routes, Chinese search/chrome and optional host metadata.
+  Chinese characters are tokenized consistently in Node and browsers so help search
+  finds words inside unspaced text.
+- `.vitepress/theme/store-links.json`: the verified HarmonyOS listing; iOS and
+  domestic Android remain pending until their real listings are available.
+- `public/screenshots/zh-Hans/`: all five native Chinese captures, with original
+  provenance in `public/screenshots/manifest.json`.
+- `public/support/`: exact China QR JPEGs. Their source commit, Git blobs, dimensions,
+  sizes and SHA-256 are pinned in `manifest.json`; these differ from the global codes.
+- `SupportPayments.vue`: original images and download links. Payments occur in the
+  selected payment app; the website has no checkout, SDK or feature entitlement.
+- `scripts/prepare-assets.py`: regenerate only Chinese captures using their recorded
+  sources. `--refresh-branding` also rebuilds the Chinese social image; set
+  `SSC_CJK_FONT` to a CJK font path off macOS. Raw captures remain in the private app repo; pass its populated checkout with
+  `--source-root /path/to/MonsterHunterDex`.
+
+Public derivatives are ordinary Git objects, outside LFS; building requires no
+mobile builds or game-data checkout. See `ASSETS.md` for source/license details.
+
+## Verification
+
+`npm run build` checks the six-page contract, internal links/anchors, preview or
+production metadata, mainland store states, original QR hashes and five framed
+Chinese screenshots. `npm run audit:ux` checks desktop/mobile gallery controls,
+keyboard/touch, search, themes, navigation and both QR downloads. `npm run audit:stores`
+checks downloads at 320/390/768/1440px in light/dark mode.
+
+The browser audits use installed Google Chrome by default. Alternatively, install
+Playwright Chromium and set `PLAYWRIGHT_CHANNEL=chromium`. Evidence is written under
+`.codex/audit-evidence/website-china-ux/` and `website-china-stores/`.

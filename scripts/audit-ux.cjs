@@ -5,8 +5,8 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 
 const dist = path.resolve('.vitepress/dist');
-const output = path.resolve(process.env.SSC_UX_AUDIT_OUTPUT || '.codex/audit-evidence/website-ux');
-const base = '/sapphire-star-codex/';
+const output = path.resolve(process.env.SSC_UX_AUDIT_OUTPUT || '.codex/audit-evidence/website-china-ux');
+const base = '/';
 const mime = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2','.xml':'application/xml'};
 const report = { pages: [], checks: [], errors: [] };
 
@@ -61,15 +61,17 @@ async function assertSelected(page, key) {
   try {
     const context = await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     const page = await context.newPage();
+    page.setDefaultTimeout(15000);
+    page.setDefaultNavigationTimeout(15000);
     page.on('pageerror', error => report.errors.push(error.message));
     page.on('response', response => { if (response.status() >= 400) report.errors.push(`${response.status()} ${response.url()}`); });
-    for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
+    for (const locale of ['']) {
       for (const width of [1440, 768, 390, 320]) {
         await page.setViewportSize({width, height: width > 900 ? 1000 : 844});
         await page.goto(origin + locale, {waitUntil:'networkidle'});
-        const name = `${locale || 'en/'}${width}`;
+        const name = `${locale || 'zh-Hans/'}${width}`;
         assert.equal(await page.getByRole('tab').count(), 5);
-        assert.equal(await page.locator('.VPNavBarTitle .title').innerText(), 'Sapphire Star Codex');
+        assert.equal(await page.locator('.VPNavBarTitle .title').innerText(), '苍蓝星图鉴');
         for (const key of ['home','hitzones','weapon','builder','saved']) {
           await page.locator(`#feature-tab-${key}`).click();
           await assertSelected(page, key);
@@ -79,7 +81,7 @@ async function assertSelected(page, key) {
           await image.scrollIntoViewIfNeeded();
           await image.evaluate(image => image.decode());
           const source = await image.getAttribute('src');
-          const language = {'':'en','zh-hans/':'zh-Hans','zh-hant/':'zh-Hant','ja-jp/':'ja'}[locale];
+          const language = 'zh-Hans';
           assert.equal(source, `${base}screenshots/${language}/${key}.webp`);
           assert.equal(await image.getAttribute('data-screenshot-language'), language);
           assert.equal(await image.getAttribute('data-device-frame'), 'iPhone 18 Pro');
@@ -126,15 +128,15 @@ async function assertSelected(page, key) {
         await assertSelected(page, 'home');
         await page.locator('h1').click();
         await page.evaluate(() => scrollTo(0, 0));
-        if (['', 'zh-hans/', 'zh-hant/'].includes(locale) && [1440, 390].includes(width)) {
-          const file = `${locale ? locale.slice(0,-1) : 'en'}-${width}.png`;
+        if ([1440, 390].includes(width)) {
+          const file = `${locale ? locale.slice(0,-1) : 'zh-hans'}-${width}.png`;
           await page.screenshot({path:path.join(output,file),fullPage:true});
         }
       }
     }
-    report.checks.push('All five gallery topics, keyboard wrap/Home/End/Tab, uniform iPhone framing, matching-language iOS hero/gallery sources, no obsolete source captions and no scroll-driven selection across four languages at 320, 390, 768 and 1440px.');
+    report.checks.push('All five gallery topics, keyboard wrap/Home/End/Tab, uniform iPhone framing, matching-language iOS hero/gallery sources, no obsolete source captions and no scroll-driven selection in Simplified Chinese at 320, 390, 768 and 1440px.');
 
-    for (const locale of ['zh-hans/', 'zh-hant/']) {
+    for (const locale of ['']) {
       for (const width of [1440, 768, 390, 320]) {
         await page.setViewportSize({width,height:width>900?1000:844});
         for (const route of ['faq/','others/','support/','privacy/']) {
@@ -151,45 +153,44 @@ async function assertSelected(page, key) {
             assert.match(text,/HTTPS/);
             assert.equal(await page.locator('.vp-doc a[href="mailto:eurekaffeine.work@gmail.com"]').count(),2);
           }
-          if (width===390 && route==='privacy/') await page.screenshot({path:path.join(output,`${locale.slice(0,-1)}-privacy-mobile.png`),fullPage:true});
+          if (width===390 && ['privacy/', 'support/'].includes(route)) await page.screenshot({path:path.join(output,`zh-hans-${route.slice(0,-1)}-mobile.png`),fullPage:true});
         }
       }
     }
-    report.checks.push('Both Chinese FAQ, About, support and privacy pages at 320, 390, 768 and 1440px: professional copy, no document text overflow, policy effective/update dates and contact links preserved.');
+    report.checks.push('Chinese FAQ, About, support and privacy pages at 320, 390, 768 and 1440px: professional copy, no document text overflow, policy effective/update dates and contact links preserved.');
 
     await page.setViewportSize({width:1440,height:1000});
     await page.goto(origin,{waitUntil:'networkidle'});
-    await page.getByRole('switch',{name:'Switch to dark theme'}).click();
+    await page.getByRole('switch',{name:'切换到深色模式'}).click();
     await page.reload({waitUntil:'networkidle'});
     assert(await page.locator('html').evaluate(el=>el.classList.contains('dark')));
     await inspect(page,'dark/desktop');
-    await page.screenshot({path:path.join(output,'en-dark.png'),fullPage:true});
-    await page.getByRole('switch',{name:'Switch to light theme'}).click();
+    await page.screenshot({path:path.join(output,'zh-hans-dark.png'),fullPage:true});
+    await page.getByRole('switch',{name:'切换到浅色模式'}).click();
     report.checks.push('Light/dark switch and persistence across reload.');
 
-    await page.getByRole('button',{name:'Change language'}).click();
-    await page.locator('.VPNavBarTranslations').getByRole('link',{name:'简体中文',exact:true}).click();
-    await page.waitForURL('**/zh-hans/');
-    await page.locator('.VPNavBarMenu').getByRole('link',{name:'常见问题',exact:true}).click();
-    await page.waitForURL('**/zh-hans/faq/');
-    await page.getByRole('button',{name:'Change language'}).click();
-    await page.locator('.VPNavBarTranslations').getByRole('link',{name:'日本語',exact:true}).click();
-    await page.waitForURL('**/ja-jp/faq/');
-    await inspect(page,'ja/faq');
-    report.checks.push('Desktop language switching preserves the FAQ route.');
+    assert.equal(await page.locator('.VPNavBarTranslations, .VPNavScreenTranslations').count(), 0);
+    assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
+    const globalLink = page.locator('.VPNavBarMenu').getByRole('link', {name:'国际版', exact:true});
+    assert.equal(await globalLink.getAttribute('href'), 'https://eurekaffeine.github.io/sapphire-star-codex/');
+    await page.locator('.VPNavBarMenu').getByRole('link', {name:'常见问题', exact:true}).click();
+    await page.waitForURL('**/faq/');
+    report.checks.push('Single Chinese locale, no language switcher, global site link and root FAQ navigation.');
 
     await page.goto(origin,{waitUntil:'networkidle'});
-    await page.getByRole('button',{name:'Search',exact:true}).click();
-    await page.locator('#localsearch-input').fill('offline');
+    await page.getByRole('button',{name:'搜索帮助',exact:true}).click();
+    await page.locator('#localsearch-input').fill('离线');
     await page.locator('.VPLocalSearchBox [role="option"]').first().waitFor();
     await inspect(page,'search/results');
     await page.screenshot({path:path.join(output,'search.png')});
     await page.locator('.VPLocalSearchBox [role="option"]').first().click();
     await page.waitForURL('**/faq/**');
-    await page.getByRole('button',{name:'Search',exact:true}).click();
+    await page.getByRole('button',{name:'搜索帮助',exact:true}).click();
+    await page.locator('#localsearch-input').fill('装饰品');
+    await page.locator('.VPLocalSearchBox [role="option"]').first().waitFor();
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#localsearch-input').count(),0);
-    report.checks.push('Local search returns offline FAQ, opens result and closes with Escape.');
+    report.checks.push('Chinese local search finds 离线 and 装饰品 within prose, opens the FAQ result and closes with Escape.');
 
     await page.setViewportSize({width:390,height:844});
     await page.goto(origin,{waitUntil:'networkidle'});
@@ -198,15 +199,12 @@ async function assertSelected(page, key) {
     await page.waitForFunction(() => { const menu = document.querySelector('.VPNavScreen'); return menu && getComputedStyle(menu).opacity === '1'; });
     await inspect(page,'mobile/menu');
     await page.screenshot({path:path.join(output,'mobile-menu.png')});
-    await page.locator('.VPNavScreenTranslations button').click();
-    await page.locator('.VPNavScreenTranslations').getByRole('link',{name:'繁體中文',exact:true}).click();
-    await page.waitForURL('**/zh-hant/');
-    await page.locator('.VPNavBarHamburger[aria-expanded="false"]').waitFor();
-    await page.getByRole('button',{name:'mobile navigation'}).click();
-    await page.locator('.VPNavScreen').getByRole('link',{name:'下載',exact:true}).click();
+    assert.equal(await page.locator('.VPNavScreenTranslations').count(), 0);
+    assert(await page.locator('.VPNavScreen').getByRole('link',{name:'国际版',exact:true}).isVisible());
+    await page.locator('.VPNavScreen').getByRole('link',{name:'下载',exact:true}).click();
     await page.waitForURL('**/#download');
     await page.locator('.VPNavBarHamburger[aria-expanded="false"]').waitFor();
-    report.checks.push('Mobile menu opens/closes, changes language and navigates to availability.');
+    report.checks.push('Chinese mobile menu opens/closes, links to the global site and navigates to downloads.');
 
     await page.setViewportSize({width:1440,height:1000});
     await page.goto(origin,{waitUntil:'networkidle'});
@@ -253,6 +251,27 @@ async function assertSelected(page, key) {
     await inspect(touchPage,'touch/gallery');
     await touchContext.close();
     report.checks.push('Native browser touch input: left/right screenshot swipes switch features, vertical swipes scroll the page without changing selection, and pinch zoom remains allowed.');
+
+    const paymentManifest = JSON.parse(await fs.readFile(path.join(dist, 'support/manifest.json'), 'utf8'));
+    await page.setViewportSize({width:1440,height:1000});
+    await page.goto(origin+'support/',{waitUntil:'networkidle'});
+    for (const payment of paymentManifest.assets) {
+      const card = page.locator(`[data-payment="${payment.provider}"]`);
+      const image = card.locator('img');
+      await image.evaluate(img=>img.decode());
+      assert.deepEqual(await image.evaluate(img=>[img.naturalWidth,img.naturalHeight]),[payment.width,payment.height]);
+      const downloadPromise = page.waitForEvent('download');
+      await card.locator('a[download]').click();
+      const download = await downloadPromise;
+      assert.equal(download.suggestedFilename(), payment.file);
+      assert.deepEqual(await fs.readFile(await download.path()), await fs.readFile(path.join(dist,'support',payment.file)));
+    }
+    await page.screenshot({path:path.join(output,'zh-hans-support-desktop.png'),fullPage:true});
+    await page.getByRole('switch',{name:'切换到深色模式'}).click();
+    await page.setViewportSize({width:390,height:844});
+    await inspect(page,'support/dark/mobile');
+    await page.screenshot({path:path.join(output,'zh-hans-support-dark.png'),fullPage:true});
+    report.checks.push('Both China QR images decode at original dimensions and browser download returns identical JPEG bytes; support reviewed on desktop/mobile and in dark mode.');
 
     assert.deepEqual(report.errors,[]);
     console.log(`UX audit passed: ${report.pages.length} rendered states. ${report.checks.length} interaction groups. No page or asset errors.`);

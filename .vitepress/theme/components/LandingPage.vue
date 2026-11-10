@@ -1,30 +1,21 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useData, withBase } from 'vitepress'
-import { locales, translations, type LocaleKey, type ScreenshotKey } from '../content'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { withBase } from 'vitepress'
+import { locale, copy, type ScreenshotKey } from '../content'
 import screenshotManifest from '../../../public/screenshots/manifest.json'
 import BenefitIcon from './BenefitIcon.vue'
 import { storeBadges } from '../stores'
 
-const { lang } = useData()
-const localeKey = computed<LocaleKey>(() => {
-  if (lang.value === 'zh-Hans') return 'zh-hans'
-  if (lang.value === 'zh-Hant') return 'zh-hant'
-  if (lang.value.startsWith('ja')) return 'ja-jp'
-  return 'root'
-})
-const copy = computed(() => translations[localeKey.value])
-const locale = computed(() => locales[localeKey.value])
-const screenshotLanguage = computed(() => ({ root: 'en', 'zh-hans': 'zh-Hans', 'zh-hant': 'zh-Hant', 'ja-jp': 'ja' } as const)[localeKey.value])
+const screenshotLanguage = 'zh-Hans'
 const activeFeature = ref(0)
 const tabElements = ref<HTMLButtonElement[]>([])
 const tabList = ref<HTMLElement | null>(null)
-const stores = computed(() => storeBadges(localeKey.value))
+const stores = storeBadges()
 let tabResizeObserver: ResizeObserver | undefined
 let swipeStart: { id: number; x: number; y: number } | undefined
 
 function capture(image: ScreenshotKey) {
-  const entry = screenshotManifest.locales[screenshotLanguage.value][image]
+  const entry = screenshotManifest.locales[screenshotLanguage][image]
   return {
     src: withBase(`/screenshots/${entry.asset}`),
     height: entry.height,
@@ -44,12 +35,12 @@ function revealSelectedTab() {
 }
 
 function selectFeature(index: number) {
-  activeFeature.value = Math.max(0, Math.min(index, copy.value.features.length - 1))
+  activeFeature.value = Math.max(0, Math.min(index, copy.features.length - 1))
   void nextTick(revealSelectedTab)
 }
 
 function moveTab(event: KeyboardEvent, index: number) {
-  const last = copy.value.features.length - 1
+  const last = copy.features.length - 1
   const target = event.key === 'ArrowRight' ? (index + 1) % (last + 1)
     : event.key === 'ArrowLeft' ? (index + last) % (last + 1)
     : event.key === 'Home' ? 0
@@ -79,7 +70,6 @@ function finishSwipe(event: PointerEvent) {
   }
 }
 
-watch(lang, () => { selectFeature(0) })
 onMounted(() => {
   tabResizeObserver = new ResizeObserver(revealSelectedTab)
   if (tabList.value) tabResizeObserver.observe(tabList.value)
@@ -172,9 +162,10 @@ onBeforeUnmount(() => { tabResizeObserver?.disconnect() })
               class="ssc-store-badge" :aria-label="`${copy.openStore}: ${store.name}`">
               <img :src="withBase(`/badges/${store.badge}`)" :alt="store.name" :style="{ height: `${store.imageHeight}px` }">
             </a>
-            <span v-else class="ssc-store-badge pending" role="img" aria-disabled="true" :aria-label="`${store.name}: ${copy.soon}`">
+            <span v-else-if="store.badge" class="ssc-store-badge pending" role="img" aria-disabled="true" :aria-label="`${store.name}: ${copy.soon}`">
               <img :src="withBase(`/badges/${store.badge}`)" alt="" aria-hidden="true" :style="{ height: `${store.imageHeight}px` }">
             </span>
+            <span v-else class="ssc-store-pending">{{ copy.soon }}</span>
           </div>
         </li></ul>
       </section>
@@ -185,10 +176,11 @@ onBeforeUnmount(() => { tabResizeObserver?.disconnect() })
         <a :href="withBase(`${locale.path}others/`)">{{ copy.support }}</a>
         <a :href="withBase(`${locale.path}support/`)">{{ locale.support }}</a>
         <a :href="withBase(`${locale.path}privacy/`)">{{ copy.privacy }}</a>
-        <a href="https://eurekaffeine.github.io/pocket-gallery/">Pocket Gallery</a>
+        <a href="https://www.pocket-gallery.cn/">破壳萌图鉴</a>
+        <a href="https://eurekaffeine.github.io/sapphire-star-codex/">国际版网站</a>
       </div>
       <p>{{ copy.footer }}</p>
-      <small>© 2026 Sapphire Star Codex</small>
+      <small>© 2026 苍蓝星图鉴</small>
     </footer>
   </div>
 </template>
