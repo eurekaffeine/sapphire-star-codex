@@ -1,0 +1,31 @@
+name: Website source validation
+on:
+  pull_request:
+    branches: [main, china-version]
+  push:
+    branches: [main, china-version]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: website-${{ (github.base_ref == 'china-version' || github.ref_name == 'china-version') && 'china-preview' || 'global' }}
+          path: .vitepress/dist
+          include-hidden-files: true

@@ -1,0 +1,21 @@
+{
+  "name": "sapphire-star-codex-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev . --host 127.0.0.1",
+    "build": "vitepress build . && node scripts/check-build.mjs",
+    "preview": "vitepress preview . --host 127.0.0.1",
+    "deploy": "node scripts/deploy.mjs",
+    "audit:ux": "npm run build && node scripts/audit-ux.cjs",
+    "audit:stores": "npm run build && node scripts/check-stores.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "vitepress": "1.6.4",
+    "vue": "3.5.44"
+  },
+  "overrides": {
+    "vite": "6.4.5"
+  }
+}

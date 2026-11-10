@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eurekaffeine.github.io/sapphire-star-codex/sitemap.xml

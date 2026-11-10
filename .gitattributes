@@ -1,0 +1,7 @@
+# Optimized website images are served without Git LFS.
+public/**/*.webp -filter -diff -merge
+public/*.png -filter -diff -merge
+public/*.jpg -filter -diff -merge
+public/frames/*.png -filter -diff -merge
+public/badges/*.png -filter -diff -merge
+public/support/*.jpg -filter -diff -merge

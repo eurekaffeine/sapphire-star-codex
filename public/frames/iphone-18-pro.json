@@ -1,0 +1,28 @@
+{
+  "device": "iPhone 18 Pro",
+  "modelIdentifier": "iPhone19,2",
+  "chromeIdentifier": "com.apple.dt.devicekit.chrome.phone11",
+  "width": 1368,
+  "height": 2730,
+  "screen": {
+    "x": 81,
+    "y": 54,
+    "width": 1206,
+    "height": 2622
+  },
+  "source": "Apple Simulator device profile and DeviceKit phone11 chrome",
+  "sourceHashes": {
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Mute BTN.pdf": "9e2018b8c823e95353291bd94ef1f020810f2546ef1ae321f40092c0f44c42b1",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Vol BTN.pdf": "0316043cd04e357eb46f59194321aab5e87983d4e588ba89df2525f0ea802f6a",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/X_Power BTN.pdf": "e1a4dbbbf5413a97bb79c88b30f9f88ce73f7fedf93741cdaa1a90ab455fbecf",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone TL.pdf": "0ff1e34a8db315fb33140df951acc173a7ed23e9a11397debb189510cb591e50",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone Top.pdf": "5ff94855d2a81b87a24eb7c63ca316b7065f98be9a9b0439593b95a2571f5f15",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone TR.pdf": "4e41537b9f20536136967662bb9f093fef1989a738cea0a07e837ac3800dbf6b",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone Left.pdf": "44f951878ff8852bc5c30f312818bb23bda9b6cda21621f1423f20f0034160b1",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone Right.pdf": "75c2feaf1e6c82d3e19875550ba14459bd8827debcdf032691a2d7ab758531b9",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone BL.pdf": "223c51ff658624432441930fb40cfcbe0faaf819fcee0852870094c61ab496d0",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone Base.pdf": "a6208510c9767e40f890d4d75ac957efb36e6d010c0628e4e9d52d3108c87042",
+    "/Library/Developer/DeviceKit/Chrome/phone11.devicechrome/Contents/Resources/Phone BR.pdf": "795e4c2869d49b9625d04c6479bb845d29ab1ebcda5d8b1cb3650f1a90b6b83e",
+    "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro.simdevicetype/Contents/Resources/4E5532ED-1470-47D1-BDF4-7AA90C26957A.pdf": "45f628b8929d800d2d91f5de25214ad2a012e051ae51b8cbf9f5de8618e72db3"
+  }
+}
