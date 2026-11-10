@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "provider": "alipay",
+      "file": "qr_alipay.jpg",
+      "width": 1200,
+      "height": 1800,
+      "bytes": 212997,
+      "sha256": "e901a29479c502f720866ac67468a23d02c6e855334b57dd2e385dc512bb1381",
+      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/dde2a9013701f304497e2b396d45aadd3d821a4c/docs/.vuepress/public/qr_alipay.jpg",
+      "sourceGitBlob": "e2ba3809c69e5bb8fa175765137c6f1553bf4fc3"
+    },
+    {
+      "provider": "wechat",
+      "file": "qr_wechat.jpg",
+      "width": 828,
+      "height": 1124,
+      "bytes": 140101,
+      "sha256": "0b8ce587a8ca2db8f8527dfe61b0f9e6a721b41168ea0c84a23f3415eb3b8f52",
+      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/dde2a9013701f304497e2b396d45aadd3d821a4c/docs/.vuepress/public/qr_wechat.jpg",
+      "sourceGitBlob": "c93d8e3ade1511a37dc9ad33d98cbd1656a795df"
+    }
+  ]
+}
