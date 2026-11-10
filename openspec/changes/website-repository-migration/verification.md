@@ -16,3 +16,7 @@ builds use only checked-in assets. Browser audit evidence stays inside the check
 under ignored `.codex/audit-evidence/`. CI builds source, without deploying.
 
 Application history, native source, datasets and raw captures are not imported.
+
+Global browser audits also pass: 117 rendered states across four locales and
+8 interaction groups, plus 32 store layout/theme states and 8 availability pages.
+No page errors or failed assets were reported.
