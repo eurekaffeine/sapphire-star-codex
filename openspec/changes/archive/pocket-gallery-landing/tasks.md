@@ -6,4 +6,4 @@
 - [x] Apply the scaffold to China with its regional content and registration footer.
 - [x] Update and run build, responsive, interaction, accessibility and store checks.
 - [x] Review desktop/mobile screenshots and fix any observed layout or behavior issues.
-- [ ] Merge both source PRs, publish the global site and verify the resulting pages.
+- [x] Merge both source PRs, publish the global site and verify the resulting pages.
