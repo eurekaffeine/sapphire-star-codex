@@ -33,11 +33,11 @@ const server = http.createServer(async (req,res) => {
     const page=await context.newPage();
     page.on('pageerror',error=>report.errors.push(error.message));
     page.on('response',response=>{if(response.status()>=400) report.errors.push(`${response.status()} ${response.url()}`);});
-    for (const [locale,available,pending,apple,google,gallery] of [
-      ['', 'Available now','Coming soon','en','en','en.png'],
-      ['zh-hans/','现已上架','尚未上架','zh-hans','zh-hans','en.png'],
-      ['zh-hant/','現已上架','尚未上架','zh-hant','zh-hant','en.png'],
-      ['ja-jp/','配信中','近日公開','jp','ja','jp.svg'],
+    for (const [locale,available,pending,apple,google] of [
+      ['', 'Available now','Coming soon','en','en'],
+      ['zh-hans/','现已上架','尚未上架','zh-hans','zh-hans'],
+      ['zh-hant/','現已上架','尚未上架','zh-hant','zh-hant'],
+      ['ja-jp/','配信中','近日公開','jp','ja'],
     ]) {
       for (const width of [320,390,768,1440]) {
         for (const theme of ['light','dark']) {
@@ -64,8 +64,11 @@ const server = http.createServer(async (req,res) => {
           assert(!visibleText.includes(available) && !visibleText.includes(pending));
           assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),1);
           assert.equal(await section.locator('.pending a, .pending[tabindex]').count(),0);
+          assert.equal(await section.locator('[data-store=harmony] h3').innerText(),'HarmonyOS NEXT');
+          assert.equal(await section.locator('[data-store=harmony] img').getAttribute('alt'),'HarmonyOS NEXT');
+          assert.equal(await section.locator('.ssc-harmony-badge').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 255, 255)');
           const images=section.locator('img');
-          const names=[`app-store-badge-${apple}.svg`,`google-play-badge-${google}.png`,`app-gallery-badge-${gallery}`];
+          const names=[`app-store-badge-${apple}.svg`,`google-play-badge-${google}.png`,'harmonyos-next-badge.webp'];
           for (let i=0;i<3;i++) {
             const image=images.nth(i);
             await image.evaluate(img=>img.decode());

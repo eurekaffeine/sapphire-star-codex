@@ -2,17 +2,8 @@
   "schemaVersion": 1,
   "source": "Pocket Gallery website",
   "sourceDirectory": "docs/.vuepress/public",
-  "artwork": "Unmodified store-provided badge artwork; trademarks remain with Apple, Google and Huawei.",
-  "appGalleryChineseFallback": "English, matching Pocket Gallery; no Chinese AppGallery badge is present in the reference.",
+  "artwork": "Unmodified badge artwork from Pocket Gallery; trademarks remain with Apple, Google and Huawei.",
   "assets": [
-    {
-      "file": "app-gallery-badge-en.png",
-      "sha256": "01c4ba8ece9a2f76c7feba116979430baf27f3b8cbc63aae003b608277a02a00"
-    },
-    {
-      "file": "app-gallery-badge-jp.svg",
-      "sha256": "a97321597dadc9fd1fb4685ac36e2bc8a3ee6428dea73a607d4a42a3d5970daa"
-    },
     {
       "file": "app-store-badge-en.svg",
       "sha256": "a26fc5b38380272c92e9019a2eb8b45542a66814b3e2b203772db8904b9fb99f"
@@ -44,6 +35,15 @@
     {
       "file": "google-play-badge-zh-hant.png",
       "sha256": "34685db3a09db09c58ba7d9018153c30cfba4e51f561026378090bf783394a55"
+    },
+    {
+      "file": "harmonyos-next-badge.webp",
+      "sha256": "363ec257662fd058c8856b3c25a62616272211769b96a6b631656914c4d8bdad",
+      "width": 464,
+      "height": 70,
+      "bytes": 3678,
+      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/1d8d4b551b424d170d403c6bd03b4b23075014a8/docs/.vuepress/public/harmonyos-next-badge.webp",
+      "sourceGitBlob": "26211233b82bad72a0723ba9a04c4cfdbb061546"
     }
   ]
 }

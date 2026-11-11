@@ -2,15 +2,17 @@
 
 ## Store badges
 
-Ten unchanged official store-badge files are copied from the owner's Pocket Gallery
-website, `docs/.vuepress/public/`. `public/badges/manifest.json` records their SHA-256
-hashes. Apple and Google badges match all four website locales; Japanese filenames
-follow the source's `jp` (Apple/Huawei) and `ja` (Google) mapping. AppGallery uses the
-source's English PNG for English/Chinese and its Japanese SVG for Japanese, because
-the reference has no Chinese AppGallery badge. No unofficial translation/recoloring,
-cropping or deformation is applied. Display sizes account for Google's embedded
-transparent clearspace so the visible badge heights align. Store trademarks/artwork
-remain the respective platform owners' property, outside Pocket Gallery's code license.
+Nine unchanged badge files are reused from the owner's Pocket Gallery website.
+The four Apple and four Google badges retain their localized original artwork.
+HarmonyOS uses the same original `harmonyos-next-badge.webp` wordmark in every
+locale, replacing the former AppGallery images. Its pinned China-branch source,
+Git blob, dimensions and SHA-256 are in `public/badges/manifest.json`.
+
+The NEXT wordmark is 464×70 with transparency. It is rendered proportionally at
+26px high on a compact white surface so its dark lettering remains legible in
+both themes; the source pixels are not cropped or recolored. Apple/Google
+rendering retains the original badges and transparent clearspace. Trademarks
+remain their respective owners' property, outside Pocket Gallery's code license.
 
 The HarmonyOS store link is copied from Pokedex-HarmonyOS's
 `entry/src/main/ets/pages/moreinfo/CreatorHubPage.ets`, constant

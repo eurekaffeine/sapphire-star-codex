@@ -121,6 +121,8 @@ body { font-family: var(--vp-font-family-base); font-size: var(--ssc-body); }
 .ssc-store-badge { display: flex; align-items: center; justify-content: center; min-height: 76px; max-width: 200px; }
 .ssc-store-badge img { display: block; width: auto; max-width: 100%; object-fit: contain; }
 .ssc-store-badge.pending { cursor: default; }
+/* Keep the original dark NEXT wordmark legible in either website theme. */
+.ssc-harmony-badge { display: flex; align-items: center; padding: 10px 12px; border-radius: 8px; background: #fff; }
 .ssc-stores p { color: var(--ssc-muted); font-size: var(--ssc-small); line-height: 1.7; }
 @media (max-width: 500px) {
   .ssc-stores li { grid-template-columns: 1fr; gap: 4px; }
