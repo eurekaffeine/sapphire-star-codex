@@ -4,7 +4,7 @@
 Sapphire Star Codex covers **Monster Hunter Wilds**, **Rise + Sunbreak**, and **World + Iceborne**. Each game has its own data. Switch games from Home to browse the right monsters, equipment, quests and mechanics.
 
 ## Can I download it yet?
-The HarmonyOS app is available on [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare). App Store and Google Play releases are still being prepared. See the [download section](../#download) for current availability; store access may vary by region and device.
+The HarmonyOS app is available on [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare). The Android app is available on [Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd). The iOS release is still being prepared. See the [download section](../#download) for current availability; store access may vary by region and device.
 
 ## Does it work offline?
 Core dex data is bundled with the app. Browsing, search, favorites and armor build tools work locally. Opening an external resource or downloading a future app update needs a connection.

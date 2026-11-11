@@ -17,7 +17,8 @@ const errors = []
 if (files.some(file => relative(root, file).split('/').includes('release-notes'))) errors.push('Removed development pages remain in the build')
 const stores = JSON.parse(await readFile(resolve('.vitepress/theme/store-links.json'),'utf8'))
 const expectedGallery = 'https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare'
-if (stores.appGallery!==expectedGallery || stores.appStore!==null || stores.googlePlay!==null) errors.push('Unverified store availability or wrong product URL')
+const expectedGooglePlay = 'https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd'
+if (stores.appGallery!==expectedGallery || stores.appStore!==null || stores.googlePlay!==expectedGooglePlay) errors.push('Unverified store availability or wrong product URL')
 const htmlFiles = files.filter(file => file.endsWith('.html'))
 const html = new Map(await Promise.all(htmlFiles.map(async file => [file, await readFile(file, 'utf8')])))
 for (const [file, content] of html) {
@@ -50,6 +51,10 @@ for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
   for (const page of ['', 'faq/', 'others/', 'privacy/', 'support/']) {
     if (!html.has(resolve(root, locale, page, 'index.html'))) errors.push(`Missing localized page: ${locale}${page}`)
   }
+  for (const page of ['faq/', 'others/']) {
+    const content = html.get(resolve(root, locale, page, 'index.html')) || ''
+    if (!content.includes(`href="${expectedGooglePlay}"`)) errors.push(`Missing published Android link: ${locale}${page}`)
+  }
   const landing = html.get(resolve(root, locale, 'index.html'))
   const support = html.get(resolve(root, locale, 'support/index.html')) || ''
   for (const file of ['qr_alipay.jpg', 'qr_wechat.jpg']) {
@@ -60,8 +65,9 @@ for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
   if (!landing?.includes(`href="${base}${locale}support/"`)) errors.push(`Missing localized support navigation: ${locale || 'en/'}`)
   if (landing) {
     const section = landing.match(/<section id="download"[\s\S]*?<\/section>/)?.[0] || ''
-    if ((section.match(/<img\b/g)||[]).length!==3 || (section.match(/<a\b/g)||[]).length!==1
-      || (section.match(/aria-disabled="true"/g)||[]).length!==2
+    if ((section.match(/<img\b/g)||[]).length!==3 || (section.match(/<a\b/g)||[]).length!==2
+      || (section.match(/aria-disabled="true"/g)||[]).length!==1
+      || !section.includes(expectedGooglePlay)
       || !section.includes(expectedGallery.replaceAll('&','&amp;')) || !section.includes('rel="noopener noreferrer"')) errors.push(`Incorrect badge/link/state contract: ${locale||'en/'}`)
     if (landing.includes('class="ssc-updates"') || section.includes('ssc-store-status')) errors.push(`Removed development section or store status labels remain: ${locale||'en/'}`)
     const badgeLocale = {'':'en','zh-hans/':'zh-hans','zh-hant/':'zh-hant','ja-jp/':'jp'}[locale]

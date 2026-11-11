@@ -4,7 +4,7 @@
 支援《魔物獵人：荒野》《崛起＋破曉》與《世界＋冰原》。各遊戲使用獨立資料，可在應用程式首頁切換並查看對應內容。
 
 ## 現在可以下載嗎？
-HarmonyOS 版本已於[華為應用程式市場](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。iOS 與 Android 版本正在準備發布。[下載應用程式](../#download)區域提供目前的上架狀態與下載連結，實際供應情形可能依地區與裝置而異。
+HarmonyOS 版本已於[華為應用程式市場](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。Android 版本已於 [Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd) 上架，iOS 版本正在準備發布。[下載應用程式](../#download)區域提供目前的上架狀態與下載連結，實際供應情形可能依地區與裝置而異。
 
 ## 是否支援離線使用？
 支援。圖鑑資料隨應用程式內建，瀏覽、搜尋、收藏與配裝搜尋皆在本機執行。瀏覽外部網站或下載應用程式更新時需要網路連線。

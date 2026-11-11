@@ -8,7 +8,7 @@
 您可以透過[支持我們](../support/)頁面，使用支付寶或微信支付自願贊助後續開發與資料維護。贊助不影響任何功能的使用。
 
 ## 意見回饋與協作
-HarmonyOS 版本已於[華為應用程式市場](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。iOS 與 Android 版本正在準備發布。
+HarmonyOS 版本已於[華為應用程式市場](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。Android 版本已於 [Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd) 上架，iOS 版本正在準備發布。
 
 歡迎協助核對遊戲資料、完善翻譯，或向其他玩家分享本網站。
 

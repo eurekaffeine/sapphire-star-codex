@@ -8,7 +8,7 @@ Sapphire Star Codex は、[Pocket Gallery](https://eurekaffeine.github.io/pocket
 [開発を支援](../support/)ページから、Alipay または WeChat Pay で任意の支援ができます。支援の有無によって利用できる機能は変わりません。
 
 ## プロジェクトへの協力
-HarmonyOS版は[Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)で配信中です。iOS版とAndroid版は公開に向けて準備中です。
+HarmonyOS版は[Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)で配信中です。Android版は[Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd)で配信中です。iOS版は公開に向けて準備中です。
 
 サイトの紹介や翻訳の確認が助けになります。データの問題には、作品と拡張コンテンツ、項目名、言語、正しい値、確認できる出典を添えてください。画像に個人情報を含めないでください。
 

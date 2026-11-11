@@ -4,7 +4,7 @@
 支持《怪物猎人：荒野》《崛起＋曙光》与《世界＋冰原》。各游戏使用独立资料，可在应用首页切换并查看对应内容。
 
 ## 现在可以下载吗？
-鸿蒙版已在[华为应用市场](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。iOS 与 Android 版正在准备发布。[下载应用](../#download)区域提供当前上架状态与下载链接，实际可用情况可能因地区与设备而异。
+鸿蒙版已在[华为应用市场](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。Android 版已在 [Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd) 上架，iOS 版正在准备发布。[下载应用](../#download)区域提供当前上架状态与下载链接，实际可用情况可能因地区与设备而异。
 
 ## 是否支持离线使用？
 支持。图鉴资料随应用内置，浏览、搜索、收藏与配装搜索均在本地执行。访问外部网站或下载应用更新时需要网络连接。

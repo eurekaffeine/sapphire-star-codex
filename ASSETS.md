@@ -12,11 +12,13 @@ cropping or deformation is applied. Display sizes account for Google's embedded
 transparent clearspace so the visible badge heights align. Store trademarks/artwork
 remain the respective platform owners' property, outside Pocket Gallery's code license.
 
-Only HarmonyOS is an active store link, copied from Pokedex-HarmonyOS's
+The HarmonyOS store link is copied from Pokedex-HarmonyOS's
 `entry/src/main/ets/pages/moreinfo/CreatorHubPage.ets`, constant
 `MONSTER_HUNTER_DEX_APP_STORE_URL`. The actual product is package
-`com.eurekaffeine.monsterhunterdex`, not Pocket Gallery. Pending Apple/Google badges
-have no href or keyboard action; their accessible labels retain their pending status.
+`com.eurekaffeine.monsterhunterdex`, not Pocket Gallery. The Android link is the
+owner-confirmed [Google Play listing](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd)
+for `com.eurekaffeine.mhd`, confirmed by the owner on 2026-11-11. The pending Apple badge has no
+href or keyboard action; its accessible label retains its pending status.
 Visible status labels are omitted from the homepage at the owner’s request.
 
 The website adapts the owner's `pocket-gallery` VitePress navigation, search, themes and documentation shell. Its MIT notice is included in `public/POCKET-GALLERY-LICENSE.txt`. The current compact gallery and typography follow the owner's UX audit.

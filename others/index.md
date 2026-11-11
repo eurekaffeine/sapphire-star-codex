@@ -5,7 +5,7 @@
 
 It brings game-specific reference data and equipment planning into a focused native app. No ads, no paywalls.
 
-HarmonyOS is available on [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare). iOS and Android releases are being prepared.
+HarmonyOS is available on [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare). Android is available on [Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd). The iOS release is being prepared.
 
 ## Support the project
 Optional contributions through Alipay or WeChat Pay are available on [Support us](../support/). They do not unlock app features or benefits.

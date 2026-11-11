@@ -8,7 +8,7 @@
 您可以通过[支持我们](../support/)页面，使用支付宝或微信支付自愿赞助后续开发与资料维护。赞助不影响任何功能的使用。
 
 ## 反馈与协作
-鸿蒙版已在[华为应用市场](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。iOS 与 Android 版正在准备发布。
+鸿蒙版已在[华为应用市场](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)上架。Android 版已在 [Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd) 上架，iOS 版正在准备发布。
 
 欢迎协助核对游戏资料、完善翻译，或向其他玩家分享本网站。
 
