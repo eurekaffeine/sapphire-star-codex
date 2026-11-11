@@ -11,3 +11,11 @@ It is a regular Git asset, not an LFS pointer.
 cover the original ratio, loaded image, accessible NEXT labels, readable white
 surface in either theme, two correct store targets, keyboard order and overflow.
 Fresh mobile light and desktop dark captures were visually inspected.
+
+Source PR #5 merged as `9e6d5b2`; its CI passed. Published gh-pages revision
+`b5a21749450943ff20a64ff451151319e8976f4c` passed Pages deployment run
+`42952700535`. All four live homepages use the NEXT image and the existing correct
+HarmonyOS product URL. The live WebP SHA-256 matches the original source exactly.
+A fresh live dark-mode browser capture confirms loaded 464×70 artwork, proportional
+rendering and the readable white badge surface. Evidence is stored locally under
+`.codex/audit-evidence/harmonyos-next/`.
