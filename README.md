@@ -43,7 +43,7 @@ not private application history. See `ASSETS.md` for asset and license provenanc
 
 `npm run build` validates 21 global pages, links, anchors, locale/base routing,
 store availability, original QR files and all 20 matching-language screenshots.
-`npm run audit:ux` verifies responsive gallery controls, navigation, search, themes,
+`npm run audit:ux` verifies the responsive feature story and carousel, navigation, search, themes,
 keyboard and touch. `npm run audit:stores` checks download presentation and links.
 Both browser audits save ignored evidence under `.codex/audit-evidence/`.
 
@@ -71,3 +71,16 @@ HarmonyOS and Android link to their verified AppGallery and Google Play listings
 The App Store remains pending until its release URL is verified. Voluntary support uses the global Pocket
 Gallery payment images on main and the distinct China images on china-version;
 contributions never unlock app features.
+
+
+## Landing scaffold
+
+The landing page follows Pocket Gallery's centered hero, desktop sticky feature
+story, mobile scroll-snap carousel, centered download badges and branded footer.
+`LandingScaffold.vue` and `FeatureStory.vue` are shared by both editions; the thin
+`LandingPage.vue` supplies locale/store data and the China registration slot.
+The hero keeps three real overlapping phone screenshots with their original
+bezels. Light-mode surfaces are white; primary rust #B8533A is from the existing
+app-icon palette. Screenshot assets, payment codes and regional routes remain
+owned by each branch. The current UX audit checks this story/carousel behavior,
+not the retired compact tab gallery or fixed four-size landing scale.
