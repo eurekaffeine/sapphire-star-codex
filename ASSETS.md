@@ -62,7 +62,7 @@ website code license. Native app assets and source are not modified by this chan
 
 ## Benefit icons
 
-`BenefitIcon.vue` retains three Lucide icons (`hard-drive-download`, `gift`,
+The former benefit cards used three Lucide icons (`hard-drive-download`, `gift`,
 `languages`), their 24×24 paths and the notice in `public/LUCIDE-LICENSE.txt`.
 
 ## Public-security registration icon
@@ -75,3 +75,20 @@ website code license. Native app assets and source are not modified by this chan
 The 36×40 PNG is displayed proportionally at 18×20 beside the owner-provided
 registration text/link. The icon is decorative for assistive technology; the
 visible link supplies the full registration number. No recoloring or cropping.
+
+
+## Pocket Gallery landing scaffold (2026-11-11)
+
+The active hero/story/download/footer layout is adapted from Pocket Gallery main
+at `b08455f5889d8ca09bbc255861e584d89a1e17bf`, under
+`docs/.vitepress/theme/components/LandingPage.vue` and `theme/style.css`.
+The MIT notice is retained. The tablet montage, Pokémon content and unused mock
+UI styles are not imported. `LandingScaffold.vue` and `FeatureStory.vue` share the
+presentation across both Sapphire editions; branch data supplies regional details.
+
+The app icon palette was previously recorded in MonsterHunterDex's
+`assets/design-tokens/tokens.json` and `docs/brand-palette-poc.html`: primary rust
+#B8533A, cocoa #6B4A30, ink #3A2E26, olive #7A8A4E and gold #C9A862. Rust supplies
+actions and highlights on a white page; dark mode uses a lighter rust for contrast.
+The original three phone screenshots and all feature captures remain unchanged.
+The previous benefit-card icons are no longer rendered; their license notice is retained.
