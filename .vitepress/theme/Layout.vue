@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme'
 import { useData, withBase } from 'vitepress'
 import { locale } from './content'
 import LandingPage from './components/LandingPage.vue'
+import ChinaRegistration from './components/ChinaRegistration.vue'
 
 const { frontmatter, page } = useData()
 </script>
@@ -16,6 +17,7 @@ const { frontmatter, page } = useData()
       <footer class="ssc-document-policy">
         <a v-if="!page.relativePath.endsWith('support/index.md')" :href="withBase(`${locale.path}support/`)">{{ locale.support }}</a>
         <a v-if="!page.relativePath.endsWith('privacy/index.md')" :href="withBase(`${locale.path}privacy/`)">{{ locale.privacy }}</a>
+        <ChinaRegistration />
       </footer>
     </template>
   </DefaultTheme.Layout>

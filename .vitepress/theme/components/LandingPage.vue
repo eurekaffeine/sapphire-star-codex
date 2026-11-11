@@ -4,6 +4,7 @@ import { withBase } from 'vitepress'
 import { locale, copy, type ScreenshotKey } from '../content'
 import screenshotManifest from '../../../public/screenshots/manifest.json'
 import BenefitIcon from './BenefitIcon.vue'
+import ChinaRegistration from './ChinaRegistration.vue'
 import { storeBadges } from '../stores'
 
 const screenshotLanguage = 'zh-Hans'
@@ -181,6 +182,7 @@ onBeforeUnmount(() => { tabResizeObserver?.disconnect() })
       </div>
       <p>{{ copy.footer }}</p>
       <small>© 2026 苍蓝星图鉴</small>
+      <ChinaRegistration />
     </footer>
   </div>
 </template>

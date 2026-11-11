@@ -83,7 +83,7 @@ for (const asset of badgeManifest.assets) {
   if (buffer.subarray(0,100).toString().includes('git-lfs') || buffer.length>300_000) errors.push(`Invalid badge payload: ${asset.file}`)
 }
 const screenshots = JSON.parse(await readFile(resolve(root, 'screenshots/manifest.json'), 'utf8'))
-const imageAssets = ['icon.png', 'social.jpg', 'frames/iphone-18-pro.png', 'frames/iphone-18-pro-screen-mask.png']
+const imageAssets = ['beian.png', 'icon.png', 'social.jpg', 'frames/iphone-18-pro.png', 'frames/iphone-18-pro-screen-mask.png']
 const payments = JSON.parse(await readFile(resolve(root, 'support/manifest.json'), 'utf8'))
 const paymentSources = { alipay: 'bc73b73480bd077ccd3b64c47942bbc86308ed1c', wechat: '2b9ffb1ecc00b6f75c1ddfd6d799464b53365a6e' }
 if (payments.assets?.length !== 2) errors.push('Incomplete support QR set')
@@ -124,6 +124,15 @@ for (const name of imageAssets) {
   if (buffer.subarray(0, 50).toString().includes('git-lfs')) errors.push(`LFS pointer shipped: ${name}`)
   if ((await stat(file)).size > 300_000) errors.push(`Unoptimized website asset: ${name}`)
 }
+
+const registrationUrl = 'https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040'
+for (const page of ['', 'faq/', 'others/', 'privacy/', 'support/']) {
+  const content = html.get(resolve(root, page, 'index.html')) || ''
+  if (!content.includes(`href="${registrationUrl}"`) || !content.includes('苏公网安备32059002005040号')
+    || !content.includes(`src="${base}beian.png"`)) errors.push(`Missing China registration footer: ${page || '/'}`)
+}
+const registrationIcon = await readFile(resolve(root, 'beian.png'))
+if (createHash('sha256').update(registrationIcon).digest('hex') !== '8dfecad0dfcb3dc584f2c2447943eefb1fd65a058856eb0611e2c56ddc4c1fe1') errors.push('Modified registration icon')
 
 const expectedPages = ['404.html', 'index.html', 'faq/index.html', 'others/index.html', 'privacy/index.html', 'support/index.html']
 if (JSON.stringify(htmlFiles.map(file => relative(root, file)).sort()) !== JSON.stringify(expectedPages.sort())) errors.push('Unexpected China page set')
