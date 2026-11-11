@@ -42,8 +42,10 @@ do not publish the example. Update the privacy policy with the actual hosting
 provider and add registration details only when confirmed for this site.
 
 Publish only `.vitepress/dist/` to the chosen host. The global GitHub Pages deploy
-command is deliberately absent from this regional branch. Do not copy Pocket
-Gallery's domain, ICP/public-security registration or deployment credentials.
+command is deliberately absent from this regional branch. The footer displays the
+owner-provided public-security record 苏公网安备32059002005040号 and its exact lookup
+link. No ICP record is specified. Domain and hosting credentials are configured
+separately for this site.
 
 The global website remains at <https://eurekaffeine.github.io/sapphire-star-codex/>.
 `.github/workflows/website.yml` validates this branch and produces a

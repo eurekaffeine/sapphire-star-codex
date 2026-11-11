@@ -64,3 +64,14 @@ website code license. Native app assets and source are not modified by this chan
 
 `BenefitIcon.vue` retains three Lucide icons (`hard-drive-download`, `gift`,
 `languages`), their 24×24 paths and the notice in `public/LUCIDE-LICENSE.txt`.
+
+## Public-security registration icon
+
+`public/beian.png` is an unchanged copy of Pocket Gallery China's
+`docs/.vuepress/public/beian.png`, pinned at source commit
+`1d8d4b551b424d170d403c6bd03b4b23075014a8` and Git blob
+`2a13ba2f4b92c4b531945a66e3e35e3ead3739f9`. SHA-256:
+`8dfecad0dfcb3dc584f2c2447943eefb1fd65a058856eb0611e2c56ddc4c1fe1`.
+The 36×40 PNG is displayed proportionally at 18×20 beside the owner-provided
+registration text/link. The icon is decorative for assistive technology; the
+visible link supplies the full registration number. No recoloring or cropping.

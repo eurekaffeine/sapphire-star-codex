@@ -20,3 +20,10 @@ Do not add tracking, automatic screenshot cycling or runtime external font asset
 
 Source and hosting branches are separate. A source change does not itself publish
 the website. Global Pages serves gh-pages; China hosting requires an explicit origin.
+
+
+The China landing and document footers display the owner-provided registration
+link 苏公网安备32059002005040号 at
+`https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040`, alongside the
+original Pocket Gallery public-security icon. The notice is keyboard accessible,
+readable in both themes and wraps within narrow content widths.
