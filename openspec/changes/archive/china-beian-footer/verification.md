@@ -14,3 +14,8 @@ desktop dark privacy footers were visually inspected.
 
 Local evidence: `.codex/audit-evidence/china-beian/` (results and screenshots).
 This change targets only china-version; it does not deploy to global Pages.
+
+Source PR #7 merged into china-version as `fb93b2c` after CI passed. The local
+China preview at http://127.0.0.1:4173/ serves the exact registration footer.
+The completed change is archived after merge; China-host deployment is outside
+this update because no China deployment destination is configured here.
