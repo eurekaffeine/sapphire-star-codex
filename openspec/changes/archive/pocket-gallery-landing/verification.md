@@ -32,3 +32,18 @@ wrappers preserve their different content, stores and footer notices.
 Evidence is ignored locally under `.codex/audit-evidence/pocket-scaffold/` in the
 global checkout and `china-pocket-scaffold/` in the China checkout. The build remains
 self-contained and requires no app checkout or simulator.
+
+## Publication
+
+Global source PR #10 merged as `54db041`; China source PR #9 merged as `1b8c6eb`.
+Both source CI checks passed. Global Pages revision
+`19c33552f201e82cf477a9500ede264a5bf9c2e6` passed deployment run `42957244537`.
+Fresh live browser checks passed in all four locales at 1440px and 390px: white
+canvas, rust actions, three original framed phones, desktop/mobile feature-story
+interaction and published store links. Live screenshots/results are in
+`.codex/audit-evidence/pocket-scaffold-live/`.
+
+The China browser preview serves the shared scaffold and its exact registration
+footer. China host configuration and payment/download differences are preserved;
+only the global build was deployed to Pages. The completed change is archived
+after both source PRs merged and live verification succeeded.
