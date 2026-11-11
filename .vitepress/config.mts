@@ -13,7 +13,7 @@ export default defineConfig({
   sitemap: { hostname: `${hostname}${base}` },
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: `${base}icon.png` }],
-    ['meta', { name: 'theme-color', content: '#F0E1C2' }],
+    ['meta', { name: 'theme-color', content: '#B8533A' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Sapphire Star Codex' }],
     ['meta', { property: 'og:image', content: `${hostname}${base}social.jpg` }],
@@ -35,6 +35,7 @@ export default defineConfig({
     link: locale.path,
     description: locale.description,
     themeConfig: {
+      siteTitle: locale.brand,
       nav: [
         { text: locale.nav[0], link: `${locale.path}#features` },
         { text: locale.nav[1], link: `${locale.path}faq/` },

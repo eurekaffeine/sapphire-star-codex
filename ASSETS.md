@@ -23,7 +23,7 @@ for `com.eurekaffeine.mhd`, confirmed by the owner on 2026-11-11. The pending Ap
 href or keyboard action; its accessible label retains its pending status.
 Visible status labels are omitted from the homepage at the owner’s request.
 
-The website adapts the owner's `pocket-gallery` VitePress navigation, search, themes and documentation shell. Its MIT notice is included in `public/POCKET-GALLERY-LICENSE.txt`. The current compact gallery and typography follow the owner's UX audit.
+The website adapts the owner's `pocket-gallery` VitePress navigation, search, themes and documentation shell. Its MIT notice is included in `public/POCKET-GALLERY-LICENSE.txt`. The current landing scaffold follows Pocket Gallery and the owner's screenshot/branding requirements.
 
 The warm palette derives from `assets/design-tokens/tokens.json`. The app icon was derived from `apps/harmonyos/AppScope/resources/base/media/foreground.png`.
 
@@ -51,7 +51,7 @@ Official game artwork and data remain CAPCOM's property. Apple's device chrome i
 
 ## Benefit-card icons
 
-Three inline Lucide icons are used in `BenefitIcon.vue`: `hard-drive-download` (offline access), `gift` (free/no ads), and `languages`. They share the original 24×24 viewBox and 2px rounded line style, rendered at 32px in the site's accent color. Adjacent headings carry the meaning, so SVGs are hidden from accessibility and are not focus targets.
+The former benefit cards used three inline Lucide icons: `hard-drive-download` (offline access), `gift` (free/no ads), and `languages`. They share the original 24×24 viewBox and 2px rounded line style, rendered at 32px in the site's accent color. Adjacent headings carry the meaning, so SVGs are hidden from accessibility and are not focus targets.
 
 Sources: `https://github.com/lucide-icons/lucide/tree/main/icons`. Exact Git blob IDs: hard-drive-download `686dec63faab86465de23e02703472b26cb25561`; gift `c33b33f6481f370fe2abb92839e453ca82513b09`; languages `c3c1486ee10dc0ec0c9a94f88171e62ca8dea9c8`. The upstream license (blob `718bb3f0e44153809972abed31839375804bf652`) is included verbatim as `public/LUCIDE-LICENSE.txt`. Only these SVG paths are vendored; no icon package or runtime network dependency was added.
 
@@ -64,3 +64,20 @@ current public source; SHA-256, source URLs, dimensions and byte counts are reco
 in `public/support/manifest.json`. The original JPEG pixels, colors and quiet zones
 are preserved. These are payment assets authorized for the same developer, not
 Monster Hunter artwork. They are stored outside LFS for static hosting.
+
+
+## Pocket Gallery landing scaffold (2026-11-11)
+
+The active hero/story/download/footer layout is adapted from Pocket Gallery main
+at `b08455f5889d8ca09bbc255861e584d89a1e17bf`, under
+`docs/.vitepress/theme/components/LandingPage.vue` and `theme/style.css`.
+The MIT notice is retained. The tablet montage, Pokémon content and unused mock
+UI styles are not imported. `LandingScaffold.vue` and `FeatureStory.vue` share the
+presentation across both Sapphire editions; branch data supplies regional details.
+
+The app icon palette was previously recorded in MonsterHunterDex's
+`assets/design-tokens/tokens.json` and `docs/brand-palette-poc.html`: primary rust
+#B8533A, cocoa #6B4A30, ink #3A2E26, olive #7A8A4E and gold #C9A862. Rust supplies
+actions and highlights on a white page; dark mode uses a lighter rust for contrast.
+The original three phone screenshots and all feature captures remain unchanged.
+The previous benefit-card icons are no longer rendered; their license notice is retained.
