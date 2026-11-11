@@ -77,10 +77,23 @@ mobile builds or game-data checkout. See `ASSETS.md` for source/license details.
 
 `npm run build` checks the six-page contract, internal links/anchors, preview or
 production metadata, mainland store states, original QR hashes and five framed
-Chinese screenshots. `npm run audit:ux` checks desktop/mobile gallery controls,
+Chinese screenshots. `npm run audit:ux` checks the desktop feature story and mobile carousel,
 keyboard/touch, search, themes, navigation and both QR downloads. `npm run audit:stores`
 checks downloads at 320/390/768/1440px in light/dark mode.
 
 The browser audits use installed Google Chrome by default. Alternatively, install
 Playwright Chromium and set `PLAYWRIGHT_CHANNEL=chromium`. Evidence is written under
 `.codex/audit-evidence/website-china-ux/` and `website-china-stores/`.
+
+
+## Landing scaffold
+
+The landing page follows Pocket Gallery's centered hero, desktop sticky feature
+story, mobile scroll-snap carousel, centered download badges and branded footer.
+`LandingScaffold.vue` and `FeatureStory.vue` are shared by both editions; the thin
+`LandingPage.vue` supplies locale/store data and the China registration slot.
+The hero keeps three real overlapping phone screenshots with their original
+bezels. Light-mode surfaces are white; primary rust #B8533A is from the existing
+app-icon palette. Screenshot assets, payment codes and regional routes remain
+owned by each branch. The current UX audit checks this story/carousel behavior,
+not the retired compact tab gallery or fixed four-size landing scale.

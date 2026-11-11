@@ -23,7 +23,7 @@ export default defineConfig({
   sitemap: origin ? { hostname: origin } : undefined,
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
-    ['meta', { name: 'theme-color', content: '#F0E1C2' }],
+    ['meta', { name: 'theme-color', content: '#B8533A' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'zh_CN' }],
     ['meta', { property: 'og:site_name', content: '苍蓝星图鉴' }],
