@@ -8,6 +8,7 @@ const dist = path.resolve('.vitepress/dist');
 const output = path.resolve(process.env.SSC_STORE_AUDIT_OUTPUT || '.codex/audit-evidence/website-store-badges');
 const base = '/sapphire-star-codex/';
 const expected = 'https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare';
+const expectedGooglePlay = 'https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd';
 const mime = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const report = { states: [], errors: [] };
 const server = http.createServer(async (req,res) => {
@@ -50,15 +51,18 @@ const server = http.createServer(async (req,res) => {
           const section=page.locator('#download');
           await section.scrollIntoViewIfNeeded();
           assert.equal(await section.locator('img').count(),3);
-          assert.equal(await section.locator('a').count(),1);
-          assert.equal(await section.locator('a').getAttribute('href'),expected);
-          assert.equal(await section.locator('a').getAttribute('target'),'_blank');
-          assert.equal(await section.locator('a').getAttribute('rel'),'noopener noreferrer');
+          assert.equal(await section.locator('a').count(),2);
+          for (const [store, url] of [['google', expectedGooglePlay], ['harmony', expected]]) {
+            const link = section.locator(`[data-store="${store}"] a`);
+            assert.equal(await link.getAttribute('href'),url);
+            assert.equal(await link.getAttribute('target'),'_blank');
+            assert.equal(await link.getAttribute('rel'),'noopener noreferrer');
+          }
           assert.equal(await page.locator('.ssc-updates').count(),0);
           assert.equal(await section.locator('.ssc-store-status').count(),0);
           const visibleText = await section.innerText();
           assert(!visibleText.includes(available) && !visibleText.includes(pending));
-          assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),2);
+          assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),1);
           assert.equal(await section.locator('.pending a, .pending[tabindex]').count(),0);
           const images=section.locator('img');
           const names=[`app-store-badge-${apple}.svg`,`google-play-badge-${google}.png`,`app-gallery-badge-${gallery}`];
@@ -74,12 +78,14 @@ const server = http.createServer(async (req,res) => {
             assert(geometry.left>=0 && geometry.right<=width+1);
             assert(Math.abs(geometry.width/geometry.height-geometry.nw/geometry.nh)<.02,'Badge distorted');
           }
-          await section.locator('a').focus();
+          await section.locator('[data-store=google] a').focus();
+          assert.equal(await page.evaluate(()=>document.activeElement?.closest('[data-store]')?.getAttribute('data-store')),'google');
+          await page.keyboard.press('Tab');
           assert.equal(await page.evaluate(()=>document.activeElement?.closest('[data-store]')?.getAttribute('data-store')),'harmony');
           await page.keyboard.press('Tab');
           assert.equal(await page.evaluate(()=>Boolean(document.activeElement?.closest('.pending'))),false);
           assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Page overflow');
-          report.states.push({locale:locale||'en/',width,theme,link:expected,available,pending});
+          report.states.push({locale:locale||'en/',width,theme,links:[expectedGooglePlay,expected],available,pending});
           const save=(locale===''&&width===1440&&theme==='light')
             ||(locale==='zh-hans/'&&width===390&&theme==='light')
             ||(locale==='zh-hant/'&&width===1440&&theme==='dark')
@@ -90,6 +96,7 @@ const server = http.createServer(async (req,res) => {
       for (const route of ['faq/','others/']) {
         await page.goto(origin+locale+route,{waitUntil:'networkidle'});
         assert.equal(await page.locator(`.vp-doc a[href="${expected}"]`).count(),1);
+        assert.equal(await page.locator(`.vp-doc a[href="${expectedGooglePlay}"]`).count(),1);
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
       }
     }

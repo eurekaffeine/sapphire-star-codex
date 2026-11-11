@@ -7,9 +7,9 @@ only Simplified Chinese at `/`, with an explicit link to the global website.
 Both editions retain the real native feature screenshots, manual five-feature
 gallery, keyboard/touch controls, local help search, light/dark mode, responsive
 navigation, FAQ, About, support and privacy. Do not invent app capability or store
-availability. HarmonyOS has a verified AppGallery URL; other platforms remain
-pending until their listings are verified. China downloads use domestic Android
-availability, not Google Play.
+availability. Global Android is published on Google Play as `com.eurekaffeine.mhd`;
+HarmonyOS has a verified AppGallery URL. iOS remains pending until its listing is
+verified. China downloads retain separate domestic Android availability.
 
 Support is voluntary and grants no paid features or rewards. Payment occurs in
 Alipay/WeChat, not on this website. The two editions use their respective original

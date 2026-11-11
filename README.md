@@ -67,7 +67,7 @@ It builds and validates, then commits only `.vitepress/dist/` onto this reposito
 remains `/sapphire-star-codex/`. The source migration does not deploy or change Pages
 settings. The China branch has separate host configuration and no global deploy command.
 
-HarmonyOS links to the verified Sapphire Star Codex listing. Apple/Google remain
-pending until actual URLs are verified. Voluntary support uses the global Pocket
+HarmonyOS and Android link to their verified AppGallery and Google Play listings.
+The App Store remains pending until its release URL is verified. Voluntary support uses the global Pocket
 Gallery payment images on main and the distinct China images on china-version;
 contributions never unlock app features.

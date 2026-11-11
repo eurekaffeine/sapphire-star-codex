@@ -4,7 +4,7 @@
 『モンスターハンターワイルズ』『ライズ＋サンブレイク』『ワールド＋アイスボーン』です。作品ごとにデータを分けています。ホームで作品を切り替えてください。
 
 ## 今すぐダウンロードできますか？
-HarmonyOS版は[Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)で配信中です。iOS版とAndroid版は公開に向けて準備中です。最新の状況は[配信状況](../#download)で確認できます。利用できる地域や端末はストアの条件によって異なります。
+HarmonyOS版は[Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare)で配信中です。Android版は[Google Play](https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd)で配信中です。iOS版は公開に向けて準備中です。最新の状況は[配信状況](../#download)で確認できます。利用できる地域や端末はストアの条件によって異なります。
 
 ## オフラインで使えますか？
 基本の図鑑データはアプリに同梱され、閲覧、検索、お気に入り、装備ツールは端末内で動作します。外部サイトの閲覧や今後のアプリ更新には通信が必要です。
