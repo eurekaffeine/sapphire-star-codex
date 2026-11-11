@@ -72,7 +72,7 @@ for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
     if (landing.includes('class="ssc-updates"') || section.includes('ssc-store-status')) errors.push(`Removed development section or store status labels remain: ${locale||'en/'}`)
     const badgeLocale = {'':'en','zh-hans/':'zh-hans','zh-hant/':'zh-hant','ja-jp/':'jp'}[locale]
     const googleLocale = badgeLocale==='jp'?'ja':badgeLocale
-    const galleryFile = badgeLocale==='jp'?'app-gallery-badge-jp.svg':'app-gallery-badge-en.png'
+    const galleryFile = 'harmonyos-next-badge.webp'
     for (const badge of [`app-store-badge-${badgeLocale}.svg`,`google-play-badge-${googleLocale}.png`,galleryFile]) {
       if (!section.includes(`${base}badges/${badge}`)) errors.push(`Wrong localized badge: ${locale}/${badge}`)
     }
@@ -83,7 +83,7 @@ for (const locale of ['', 'zh-hans/', 'zh-hant/', 'ja-jp/']) {
   }
 }
 const badgeManifest = JSON.parse(await readFile(resolve(root,'badges/manifest.json'),'utf8'))
-if (badgeManifest.assets.length!==10) errors.push('Incomplete badge asset set')
+if (badgeManifest.assets.length!==9) errors.push('Incomplete badge asset set')
 for (const asset of badgeManifest.assets) {
   const buffer = await readFile(resolve(root,'badges',asset.file))
   if (createHash('sha256').update(buffer).digest('hex')!==asset.sha256) errors.push(`Modified badge artwork: ${asset.file}`)

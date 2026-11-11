@@ -170,7 +170,10 @@ onBeforeUnmount(() => { tabResizeObserver?.disconnect() })
           <div class="ssc-store-access">
             <a v-if="store.url" :href="store.url" target="_blank" rel="noopener noreferrer"
               class="ssc-store-badge" :aria-label="`${copy.openStore}: ${store.name}`">
-              <img :src="withBase(`/badges/${store.badge}`)" :alt="store.name" :style="{ height: `${store.imageHeight}px` }">
+              <span v-if="store.id === 'harmony'" class="ssc-harmony-badge">
+                <img :src="withBase(`/badges/${store.badge}`)" :alt="store.name" :style="{ height: `${store.imageHeight}px` }">
+              </span>
+              <img v-else :src="withBase(`/badges/${store.badge}`)" :alt="store.name" :style="{ height: `${store.imageHeight}px` }">
             </a>
             <span v-else class="ssc-store-badge pending" role="img" aria-disabled="true" :aria-label="`${store.name}: ${copy.soon}`">
               <img :src="withBase(`/badges/${store.badge}`)" alt="" aria-hidden="true" :style="{ height: `${store.imageHeight}px` }">

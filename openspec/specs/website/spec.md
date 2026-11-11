@@ -8,7 +8,8 @@ Both editions retain the real native feature screenshots, manual five-feature
 gallery, keyboard/touch controls, local help search, light/dark mode, responsive
 navigation, FAQ, About, support and privacy. Do not invent app capability or store
 availability. Global Android is published on Google Play as `com.eurekaffeine.mhd`;
-HarmonyOS has a verified AppGallery URL. iOS remains pending until its listing is
+HarmonyOS has a verified AppGallery URL; its global download action uses the
+original HarmonyOS NEXT badge. iOS remains pending until its listing is
 verified. China downloads retain separate domestic Android availability.
 
 Support is voluntary and grants no paid features or rewards. Payment occurs in
