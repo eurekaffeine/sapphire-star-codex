@@ -5,4 +5,4 @@
 - [x] Add localized global copy/pages and update language-support wording.
 - [x] Wire locale-specific screenshots, store artwork and Arabic RTL behavior.
 - [x] Build and verify routes, assets, layout and interaction across languages.
-- [ ] Merge/publish the global update, update applicable China wording/screens, and verify results.
+- [x] Merge/publish the global update, update applicable China wording/screens, and verify results.
