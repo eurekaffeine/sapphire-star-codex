@@ -92,3 +92,13 @@ The app icon palette was previously recorded in MonsterHunterDex's
 actions and highlights on a white page; dark mode uses a lighter rust for contrast.
 The original three phone screenshots and all feature captures remain unchanged.
 The previous benefit-card icons are no longer rendered; their license notice is retained.
+
+
+## Expanded-app screenshot refresh — 2026-11-14
+
+The China edition keeps Simplified Chinese-only pages and now uses the same five
+fresh zh-Hans native captures as the expanded global website. The updated app
+supports fourteen selectable languages; the site remains zh-Hans. Original PNGs
+and UI records are preserved privately under the app checkout's
+`.codex/audit-evidence/website-languages-20261114/captures/zh-Hans/`.
+The existing iPhone bezel, QR codes, store availability and registration footer remain.

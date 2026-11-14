@@ -1,7 +1,7 @@
 # Sapphire Star Codex website
 
 This repository is the canonical editable website source. `main` contains the
-four-language global edition; `china-version` contains the Simplified Chinese
+fourteen-language global edition; `china-version` contains the Simplified Chinese
 China edition. `gh-pages` contains only built global output.
 
 - Never push directly to main. Use a branch and PR, with a successful local build.

@@ -1,7 +1,7 @@
 # Website behavior
 
-The global edition serves English, Simplified Chinese, Traditional Chinese and
-Japanese under `/sapphire-star-codex/` on GitHub Pages. The China edition serves
+The global edition serves fourteen app languages, including Arabic RTL and
+separate Spain/Latin American Spanish, under `/sapphire-star-codex/` on GitHub Pages. The China edition serves
 only Simplified Chinese at `/`, with an explicit link to the global website.
 
 Both editions retain the real native feature screenshots, responsive five-feature
