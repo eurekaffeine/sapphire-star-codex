@@ -97,3 +97,8 @@ bezels. Light-mode surfaces are white; primary rust #B8533A is from the existing
 app-icon palette. Screenshot assets, payment codes and regional routes remain
 owned by each branch. The current UX audit checks this story/carousel behavior,
 not the retired compact tab gallery or fixed four-size landing scale.
+
+
+The app now supports fourteen languages. This China website remains Simplified
+Chinese-only and uses fresh zh-Hans screenshots from the same native capture run
+as the global edition. The global site's expanded language routes are independent.
