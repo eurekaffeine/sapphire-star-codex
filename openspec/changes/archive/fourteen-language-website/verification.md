@@ -64,3 +64,18 @@ remain intact.
 Website translations are authored from the existing content and use the existing
 policy's effective date with a separate translation date. They do not add claims
 of complete game-text coverage or professional linguistic certification.
+
+The final global store audit also passed 112 locale/viewport/theme states and all
+28 localized availability pages. Original badge/QR hashes and both published
+store destinations are verified; English artwork fallback is explicit in metadata.
+
+
+## Publication and live checks
+
+Global source PR #14 merged as `7d0a4ff`; China source PR #13 merged as `db9a7df`.
+Both source CI builds passed. Global Pages revision
+`039df608cf1fe5d7ceb3047433f034f4b512676d` deployed successfully in run `43584850677`.
+Live verification passed all 70 localized content pages, all 70 exact WebP hashes,
+and mobile carousel behavior in every one of the fourteen locales. The original
+three-phone hero, white/rust scaffold and regional differences remain intact.
+The completed change is archived after implementation, audit and publication.
