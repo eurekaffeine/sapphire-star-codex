@@ -13,7 +13,7 @@ Core dex data is bundled with the app. Browsing, search, favorites and armor bui
 Choose required skills and levels, fix equipment, exclude pieces, and search for compatible sets. You can limit the search to owned decorations. Rise also supports owned talismans and Qurious armor. Results depend on the selected game's data and your constraints; the builder is not a damage calculator.
 
 ## Which languages are included?
-English, Japanese, Simplified Chinese and Traditional Chinese. Missing individual translations fall back to English. Website screenshots use the language selected on this site.
+The app supports 14 languages: English, Japanese, Simplified Chinese, Traditional Chinese, Korean, French, German, Spanish (Spain), Spanish (Latin America), Italian, Russian, Portuguese (Brazil), Polish and Arabic. Missing game text may fall back to English; Latin American Spanish first checks Spain Spanish. Website screenshots match the selected language.
 
 ## Is this an official Capcom app?
 No. This is the project's own website for an independent, non-commercial fan companion. It is not affiliated with or endorsed by CAPCOM. Monster Hunter, game artwork and game data belong to CAPCOM Co., Ltd.

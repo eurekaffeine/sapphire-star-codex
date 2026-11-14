@@ -5,7 +5,8 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 const china = Object.hasOwn(require('../.vitepress/theme/store-links.json'), 'androidChina');
 const base = china ? '/' : '/sapphire-star-codex/';
-const locales = china ? [''] : ['', 'zh-hans/', 'zh-hant/', 'ja-jp/'];
+const localeMetadata = china ? null : require('../.vitepress/theme/locales.json');
+const locales = china ? [''] : Object.values(localeMetadata).map(locale => locale.path.slice(1));
 const topics = ['home', 'hitzones', 'weapon', 'builder', 'saved'];
 const root = path.resolve('.vitepress/dist');
 const output = path.resolve(process.env.SSC_UX_AUDIT_OUTPUT || `.codex/audit-evidence/${china ? 'china-' : ''}pocket-scaffold`);
@@ -22,7 +23,8 @@ const server = http.createServer(async (req, res) => {
     res.end(await fs.readFile(file));
   } catch { res.writeHead(404); res.end('Not found'); }
 });
-const languageFor = locale => china ? 'zh-Hans' : ({ '': 'en', 'zh-hans/': 'zh-Hans', 'zh-hant/': 'zh-Hant', 'ja-jp/': 'ja' })[locale];
+const metadataFor = locale => china ? {dir:'ltr',lang:'zh-Hans',screenshotLanguage:'zh-Hans'} : Object.values(localeMetadata).find(item => item.path === '/' + locale);
+const languageFor = locale => metadataFor(locale).screenshotLanguage;
 
 async function inspect(page, name) {
   const state = await page.evaluate(() => ({
@@ -36,6 +38,13 @@ async function inspect(page, name) {
 
 async function assertFeature(page, key, language) {
   await page.waitForFunction(key => document.querySelector('.ssc-story')?.getAttribute('data-active-feature') === key, key);
+  if (await page.locator('.ssc-carousel-controls').isVisible()) {
+    await page.waitForFunction(key => {
+      const track = document.querySelector('.ssc-chapters').getBoundingClientRect();
+      const card = document.getElementById(`feature-chapter-${key}`).getBoundingClientRect();
+      return Math.abs(track.left - card.left) < 2;
+    }, key);
+  }
   const image = page.locator(`.ssc-phone img[data-feature-image="${key}"]`);
   assert(await image.isVisible());
   assert.equal(await page.locator('.ssc-phone img:visible').count(), 1);
@@ -66,10 +75,12 @@ async function centerChapter(page, key) {
     page.on('response', response => { if (response.status() >= 400) report.errors.push(`${response.status()} ${response.url()}`); });
     for (const locale of locales) {
       const language = languageFor(locale);
+      const rtl = metadataFor(locale).dir === 'rtl';
       for (const width of [1440, 1024, 768, 390, 320]) {
         await page.setViewportSize({ width, height: width > 1024 ? 1000 : 844 });
         await page.goto(origin + locale, { waitUntil: 'networkidle' });
         const name = `${language}/${width}`;
+        assert.equal(await page.locator('html').getAttribute('dir'), rtl ? 'rtl' : 'ltr');
         assert.equal(await page.locator('.ssc-site').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(255, 255, 255)');
         assert.equal(await page.locator('.ssc-button.primary').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(184, 83, 58)');
         assert.equal(await page.locator('.ssc-hero-device img').count(), 3);
@@ -129,7 +140,7 @@ async function centerChapter(page, key) {
           await assertFeature(page, 'home', language);
           await dots.first().press('End');
           await assertFeature(page, 'saved', language);
-          await dots.last().press('ArrowLeft');
+          await dots.last().press(rtl ? 'ArrowRight' : 'ArrowLeft');
           await assertFeature(page, 'builder', language);
           const sizes = await controls.locator('button').evaluateAll(elements => elements.map(el => {
             const box = el.getBoundingClientRect(); return [box.width, box.height];
@@ -157,7 +168,7 @@ async function centerChapter(page, key) {
     await page.screenshot({ path: path.join(output, 'dark-hero.png') });
     await inspect(page, 'dark/hero');
     await page.getByRole('switch', { name: china ? '切换到浅色模式' : 'Switch to light theme' }).click();
-    const searchName = china ? '搜索帮助' : 'Search';
+    const searchName = china ? '搜索帮助' : localeMetadata.root.search.label;
     await page.getByRole('button', { name: searchName, exact: true }).click();
     await page.locator('#localsearch-input').fill(china ? '离线' : 'offline');
     await page.locator('.VPLocalSearchBox [role=option]').first().waitFor();
@@ -165,7 +176,7 @@ async function centerChapter(page, key) {
     await page.waitForURL('**/faq/**');
     await inspect(page, 'search/faq');
     if (!china) {
-      await page.getByRole('button', { name: 'Change language' }).click();
+      await page.getByRole('button', { name: localeMetadata.root.languageMenuLabel }).click();
       await page.locator('.VPNavBarTranslations').getByRole('link', { name: '简体中文', exact: true }).click();
       await page.waitForURL(url => url.pathname.endsWith('/zh-hans/faq/'));
       await page.waitForFunction(() => document.querySelector('.VPNavBarTitle .title')?.textContent.trim() === '苍蓝星图鉴');
@@ -186,15 +197,17 @@ async function centerChapter(page, key) {
     assert.equal(await page.locator('.VPNavBarHamburger').getAttribute('aria-expanded'), 'false');
     report.checks.push('Theme persistence, local help search, global locale-preserving document routing, supporting pages, China registration and mobile download navigation.');
 
+    for (const touchLocale of (china ? [''] : ['', 'ar/'])) {
+    const rtlTouch = metadataFor(touchLocale).dir === 'rtl';
     const touchContext = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
     const touchPage = await touchContext.newPage();
     touchPage.setDefaultTimeout(15000);
     touchPage.on('pageerror', error => report.errors.push(error.message));
-    await touchPage.goto(origin, { waitUntil: 'networkidle' });
+    await touchPage.goto(origin + touchLocale, { waitUntil: 'networkidle' });
     const cdp = await touchContext.newCDPSession(touchPage);
     async function gesture(box, horizontal) {
-      const x1 = box.x + box.width * (horizontal ? 0.8 : 0.5);
-      const x2 = box.x + box.width * (horizontal ? 0.2 : 0.5);
+      const x1 = box.x + box.width * (horizontal ? (rtlTouch ? 0.2 : 0.8) : 0.5);
+      const x2 = box.x + box.width * (horizontal ? (rtlTouch ? 0.8 : 0.2) : 0.5);
       const y1 = box.y + box.height * (horizontal ? 0.5 : 0.65);
       const y2 = box.y + box.height * (horizontal ? 0.5 : 0.25);
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: x1, y: y1 }] });
@@ -207,17 +220,18 @@ async function centerChapter(page, key) {
     const phone = touchPage.locator('.ssc-phone');
     await phone.scrollIntoViewIfNeeded();
     await gesture(await phone.boundingBox(), true);
-    await assertFeature(touchPage, 'hitzones', languageFor(''));
+    await assertFeature(touchPage, 'hitzones', languageFor(touchLocale));
     await touchPage.locator('.ssc-chapters').scrollIntoViewIfNeeded();
     await gesture(await touchPage.locator('.ssc-chapters').boundingBox(), true);
-    await assertFeature(touchPage, 'weapon', languageFor(''));
+    await assertFeature(touchPage, 'weapon', languageFor(touchLocale));
     await phone.scrollIntoViewIfNeeded();
     const before = await touchPage.evaluate(() => scrollY);
     await gesture(await phone.boundingBox(), false);
     await touchPage.waitForFunction(before => scrollY > before + 20, before);
-    await assertFeature(touchPage, 'weapon', languageFor(''));
+    await assertFeature(touchPage, 'weapon', languageFor(touchLocale));
     assert((await phone.evaluate(el => getComputedStyle(el).touchAction)).includes('pinch-zoom'));
     await touchContext.close();
+    }
     report.checks.push('Real browser touch gestures switch phone/text chapters, vertical phone swipes scroll normally, and pinch zoom remains enabled.');
     assert.deepEqual(report.errors, []);
     console.log(`UX audit passed: ${report.states.length} rendered states, ${report.checks.length} interaction groups, no page/asset errors.`);

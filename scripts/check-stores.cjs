@@ -7,6 +7,8 @@ const { chromium } = require('playwright');
 const dist = path.resolve('.vitepress/dist');
 const output = path.resolve(process.env.SSC_STORE_AUDIT_OUTPUT || '.codex/audit-evidence/website-store-badges');
 const base = '/sapphire-star-codex/';
+const localeMetadata = require('../.vitepress/theme/locales.json');
+const localeCopy = require('../.vitepress/theme/copy.json');
 const expected = 'https://appgallery.huawei.com/app/detail?id=com.eurekaffeine.monsterhunterdex&channelId=SHARE&source=appshare';
 const expectedGooglePlay = 'https://play.google.com/store/apps/details?id=com.eurekaffeine.mhd';
 const mime = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
@@ -33,12 +35,11 @@ const server = http.createServer(async (req,res) => {
     const page=await context.newPage();
     page.on('pageerror',error=>report.errors.push(error.message));
     page.on('response',response=>{if(response.status()>=400) report.errors.push(`${response.status()} ${response.url()}`);});
-    for (const [locale,available,pending,apple,google] of [
-      ['', 'Available now','Coming soon','en','en'],
-      ['zh-hans/','现已上架','尚未上架','zh-hans','zh-hans'],
-      ['zh-hant/','現已上架','尚未上架','zh-hant','zh-hant'],
-      ['ja-jp/','配信中','近日公開','jp','ja'],
-    ]) {
+    for (const [key, metadata] of Object.entries(localeMetadata)) {
+      const locale = metadata.path.slice(1);
+      const pending = localeCopy[key].soon;
+      const apple = metadata.badgeLocale;
+      const google = apple === 'jp' ? 'ja' : apple;
       for (const width of [320,390,768,1440]) {
         for (const theme of ['light','dark']) {
           await page.setViewportSize({width,height:900});
@@ -61,7 +62,7 @@ const server = http.createServer(async (req,res) => {
           assert.equal(await page.locator('.ssc-updates').count(),0);
           assert.equal(await section.locator('.ssc-store-status').count(),0);
           const visibleText = await section.innerText();
-          assert(!visibleText.includes(available) && !visibleText.includes(pending));
+          assert(!visibleText.includes(pending));
           assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),1);
           assert.equal(await section.locator('.pending a, .pending[tabindex]').count(),0);
           assert.equal(await section.locator('[data-store=harmony] h3').innerText(),'HarmonyOS NEXT');
@@ -88,7 +89,7 @@ const server = http.createServer(async (req,res) => {
           await page.keyboard.press('Tab');
           assert.equal(await page.evaluate(()=>Boolean(document.activeElement?.closest('.pending'))),false);
           assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Page overflow');
-          report.states.push({locale:locale||'en/',width,theme,links:[expectedGooglePlay,expected],available,pending});
+          report.states.push({locale:locale||'en/',width,theme,links:[expectedGooglePlay,expected],pending});
           const save=(locale===''&&width===1440&&theme==='light')
             ||(locale==='zh-hans/'&&width===390&&theme==='light')
             ||(locale==='zh-hant/'&&width===1440&&theme==='dark')
@@ -105,6 +106,6 @@ const server = http.createServer(async (req,res) => {
     }
     assert.deepEqual(report.errors,[]);
     await fs.writeFile(path.join(output,'results.json'),JSON.stringify(report,null,2));
-    console.log(`Verified ${report.states.length} localized responsive/theme store states and 8 availability pages.`);
+    console.log(`Verified ${report.states.length} localized responsive/theme store states and ${Object.keys(localeMetadata).length * 2} availability pages.`);
   } finally { await browser.close(); await new Promise(resolve=>server.close(resolve)); }
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

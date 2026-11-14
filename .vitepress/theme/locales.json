@@ -1,0 +1,646 @@
+{
+  "root": {
+    "brand": "Sapphire Star Codex",
+    "label": "English",
+    "lang": "en",
+    "path": "/",
+    "privacy": "Privacy policy",
+    "support": "Support us",
+    "description": "Monster Hunter reference data and armor builds for Wilds, Rise with Sunbreak, and World with Iceborne.",
+    "nav": [
+      "Features",
+      "FAQ",
+      "About",
+      "Download"
+    ],
+    "contents": "On this page",
+    "top": "Back to top",
+    "appearance": "Appearance",
+    "menu": "Menu",
+    "screenshotLanguage": "en",
+    "badgeLocale": "en",
+    "dir": "ltr",
+    "search": {
+      "label": "Search help",
+      "clear": "Clear search",
+      "close": "Close search",
+      "noResults": "No results found",
+      "details": "Show details",
+      "select": "Select",
+      "navigate": "Navigate"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "payment QR code",
+      "save": "Save QR code"
+    },
+    "languageMenuLabel": "Language",
+    "chrome": {
+      "skip": "Skip to content",
+      "dark": "Switch to dark theme",
+      "light": "Switch to light theme",
+      "notFound": "Page not found",
+      "notFoundBody": "This page does not exist or has moved.",
+      "home": "Back to home"
+    }
+  },
+  "zh-hans": {
+    "brand": "苍蓝星图鉴",
+    "label": "简体中文",
+    "lang": "zh-Hans",
+    "path": "/zh-hans/",
+    "privacy": "隐私政策",
+    "support": "支持我们",
+    "description": "苍蓝星图鉴：查询怪物弱点、装备性能与素材来源，按目标技能搜索配装。支持《荒野》《崛起＋曙光》《世界＋冰原》。",
+    "nav": [
+      "功能",
+      "常见问题",
+      "关于",
+      "下载"
+    ],
+    "contents": "本页目录",
+    "top": "返回顶部",
+    "appearance": "外观",
+    "menu": "菜单",
+    "screenshotLanguage": "zh-Hans",
+    "badgeLocale": "zh-hans",
+    "dir": "ltr",
+    "search": {
+      "label": "搜索帮助",
+      "clear": "清空搜索",
+      "close": "关闭搜索",
+      "noResults": "未找到相关结果",
+      "details": "显示详细内容",
+      "select": "选择",
+      "navigate": "切换"
+    },
+    "payment": {
+      "alipay": "支付宝",
+      "wechat": "微信支付",
+      "qr": "收款二维码",
+      "save": "保存二维码"
+    },
+    "languageMenuLabel": "语言",
+    "chrome": {
+      "skip": "跳转到内容",
+      "dark": "切换到深色模式",
+      "light": "切换到浅色模式",
+      "notFound": "页面未找到",
+      "notFoundBody": "该页面不存在或已移动。",
+      "home": "返回首页"
+    }
+  },
+  "zh-hant": {
+    "brand": "蒼藍星圖鑑",
+    "label": "繁體中文",
+    "lang": "zh-Hant",
+    "path": "/zh-hant/",
+    "privacy": "隱私權政策",
+    "support": "支持我們",
+    "description": "蒼藍星圖鑑：查詢魔物弱點、裝備性能與素材來源，依目標技能搜尋配裝。支援《荒野》《崛起＋破曉》《世界＋冰原》。",
+    "nav": [
+      "功能",
+      "常見問題",
+      "關於",
+      "下載"
+    ],
+    "contents": "本頁目錄",
+    "top": "返回頂部",
+    "appearance": "外觀",
+    "menu": "選單",
+    "screenshotLanguage": "zh-Hant",
+    "badgeLocale": "zh-hant",
+    "dir": "ltr",
+    "search": {
+      "label": "搜尋說明",
+      "clear": "清除搜尋",
+      "close": "關閉搜尋",
+      "noResults": "找不到相關結果",
+      "details": "顯示詳細內容",
+      "select": "選擇",
+      "navigate": "切換"
+    },
+    "payment": {
+      "alipay": "支付寶",
+      "wechat": "微信支付",
+      "qr": "收款 QR Code",
+      "save": "儲存 QR Code"
+    },
+    "languageMenuLabel": "語言",
+    "chrome": {
+      "skip": "跳至內容",
+      "dark": "切換至深色模式",
+      "light": "切換至淺色模式",
+      "notFound": "找不到頁面",
+      "notFoundBody": "此頁面不存在或已移動。",
+      "home": "返回首頁"
+    }
+  },
+  "ja-jp": {
+    "brand": "青い星のハンターノート",
+    "label": "日本語",
+    "lang": "ja-JP",
+    "path": "/ja-jp/",
+    "privacy": "プライバシーポリシー",
+    "support": "開発を支援",
+    "description": "ワイルズ、ライズとサンブレイク、ワールドとアイスボーンのデータと装備検索。",
+    "nav": [
+      "機能",
+      "よくある質問",
+      "このアプリについて",
+      "ダウンロード"
+    ],
+    "contents": "目次",
+    "top": "先頭に戻る",
+    "appearance": "表示",
+    "menu": "メニュー",
+    "screenshotLanguage": "ja",
+    "badgeLocale": "jp",
+    "dir": "ltr",
+    "search": {
+      "label": "ヘルプを検索",
+      "clear": "検索をクリア",
+      "close": "検索を閉じる",
+      "noResults": "結果が見つかりません",
+      "details": "詳細を表示",
+      "select": "選択",
+      "navigate": "移動"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "支援用QRコード",
+      "save": "QRコードを保存"
+    },
+    "languageMenuLabel": "言語",
+    "chrome": {
+      "skip": "本文へスキップ",
+      "dark": "ダークモードに切り替える",
+      "light": "ライトモードに切り替える",
+      "notFound": "ページが見つかりません",
+      "notFoundBody": "このページは存在しないか、移動しました。",
+      "home": "ホームに戻る"
+    }
+  },
+  "fr": {
+    "brand": "Sapphire Star Codex",
+    "label": "Français",
+    "lang": "fr",
+    "path": "/fr/",
+    "privacy": "Confidentialité",
+    "support": "Nous soutenir",
+    "description": "Données Monster Hunter et recherche de sets pour Wilds, Rise avec Sunbreak et World avec Iceborne.",
+    "nav": [
+      "Fonctionnalités",
+      "Questions fréquentes",
+      "À propos",
+      "Télécharger"
+    ],
+    "contents": "Sur cette page",
+    "top": "Haut de page",
+    "appearance": "Apparence",
+    "menu": "Menu",
+    "screenshotLanguage": "fr",
+    "badgeLocale": "fr",
+    "dir": "ltr",
+    "search": {
+      "label": "Rechercher dans l’aide",
+      "clear": "Effacer la recherche",
+      "close": "Fermer la recherche",
+      "noResults": "Aucun résultat",
+      "details": "Afficher les détails",
+      "select": "Sélectionner",
+      "navigate": "Parcourir"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "code QR de paiement",
+      "save": "Enregistrer le code QR"
+    },
+    "languageMenuLabel": "Langue",
+    "chrome": {
+      "skip": "Aller au contenu",
+      "dark": "Passer au thème sombre",
+      "light": "Passer au thème clair",
+      "notFound": "Page introuvable",
+      "notFoundBody": "Cette page n’existe pas ou a été déplacée.",
+      "home": "Retour à l’accueil"
+    }
+  },
+  "de": {
+    "brand": "Sapphire Star Codex",
+    "label": "Deutsch",
+    "lang": "de",
+    "path": "/de/",
+    "privacy": "Datenschutz",
+    "support": "Unterstützen",
+    "description": "Monster-Hunter-Daten und Rüstungssuche für Wilds, Rise mit Sunbreak und World mit Iceborne.",
+    "nav": [
+      "Funktionen",
+      "Häufige Fragen",
+      "Über die App",
+      "Herunterladen"
+    ],
+    "contents": "Auf dieser Seite",
+    "top": "Nach oben",
+    "appearance": "Darstellung",
+    "menu": "Menü",
+    "screenshotLanguage": "de",
+    "badgeLocale": "de",
+    "dir": "ltr",
+    "search": {
+      "label": "Hilfe durchsuchen",
+      "clear": "Suche löschen",
+      "close": "Suche schließen",
+      "noResults": "Keine Ergebnisse",
+      "details": "Details anzeigen",
+      "select": "Auswählen",
+      "navigate": "Navigieren"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "Zahlungs-QR-Code",
+      "save": "QR-Code speichern"
+    },
+    "languageMenuLabel": "Sprache",
+    "chrome": {
+      "skip": "Zum Inhalt springen",
+      "dark": "Dunkles Design aktivieren",
+      "light": "Helles Design aktivieren",
+      "notFound": "Seite nicht gefunden",
+      "notFoundBody": "Diese Seite existiert nicht oder wurde verschoben.",
+      "home": "Zur Startseite"
+    }
+  },
+  "it": {
+    "brand": "Sapphire Star Codex",
+    "label": "Italiano",
+    "lang": "it",
+    "path": "/it/",
+    "privacy": "Informativa sulla privacy",
+    "support": "Sostieni il progetto",
+    "description": "Dati di Monster Hunter e ricerca di set per Wilds, Rise con Sunbreak e World con Iceborne.",
+    "nav": [
+      "Funzioni",
+      "Domande frequenti",
+      "Informazioni",
+      "Scarica"
+    ],
+    "contents": "In questa pagina",
+    "top": "Torna in alto",
+    "appearance": "Aspetto",
+    "menu": "Menu",
+    "screenshotLanguage": "it",
+    "badgeLocale": "it",
+    "dir": "ltr",
+    "search": {
+      "label": "Cerca nella guida",
+      "clear": "Cancella ricerca",
+      "close": "Chiudi ricerca",
+      "noResults": "Nessun risultato",
+      "details": "Mostra dettagli",
+      "select": "Seleziona",
+      "navigate": "Naviga"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "codice QR di pagamento",
+      "save": "Salva il codice QR"
+    },
+    "languageMenuLabel": "Lingua",
+    "chrome": {
+      "skip": "Vai al contenuto",
+      "dark": "Passa al tema scuro",
+      "light": "Passa al tema chiaro",
+      "notFound": "Pagina non trovata",
+      "notFoundBody": "Questa pagina non esiste o è stata spostata.",
+      "home": "Torna alla home"
+    }
+  },
+  "ko": {
+    "brand": "Sapphire Star Codex",
+    "label": "한국어",
+    "lang": "ko",
+    "path": "/ko/",
+    "privacy": "개인정보 처리방침",
+    "support": "개발 후원",
+    "description": "와일즈, 라이즈와 선브레이크, 월드와 아이스본의 몬스터 헌터 자료와 방어구 세트 검색.",
+    "nav": [
+      "주요 기능",
+      "자주 묻는 질문",
+      "앱 소개",
+      "다운로드"
+    ],
+    "contents": "목차",
+    "top": "맨 위로",
+    "appearance": "화면 모드",
+    "menu": "메뉴",
+    "screenshotLanguage": "ko",
+    "badgeLocale": "ko",
+    "dir": "ltr",
+    "search": {
+      "label": "도움말 검색",
+      "clear": "검색 지우기",
+      "close": "검색 닫기",
+      "noResults": "검색 결과가 없습니다",
+      "details": "자세히 보기",
+      "select": "선택",
+      "navigate": "이동"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "결제 QR 코드",
+      "save": "QR 코드 저장"
+    },
+    "languageMenuLabel": "언어",
+    "chrome": {
+      "skip": "본문으로 이동",
+      "dark": "어두운 테마로 전환",
+      "light": "밝은 테마로 전환",
+      "notFound": "페이지를 찾을 수 없습니다",
+      "notFoundBody": "페이지가 없거나 이동되었습니다.",
+      "home": "홈으로 돌아가기"
+    }
+  },
+  "es": {
+    "brand": "Sapphire Star Codex",
+    "label": "Español (España)",
+    "lang": "es-ES",
+    "path": "/es/",
+    "privacy": "Política de privacidad",
+    "support": "Apoya el proyecto",
+    "description": "Datos de Monster Hunter y búsqueda de armaduras para Wilds, Rise con Sunbreak y World con Iceborne.",
+    "nav": [
+      "Funciones",
+      "Preguntas frecuentes",
+      "Acerca de",
+      "Descargar"
+    ],
+    "contents": "En esta página",
+    "top": "Volver arriba",
+    "appearance": "Apariencia",
+    "menu": "Menú",
+    "screenshotLanguage": "es",
+    "badgeLocale": "es",
+    "dir": "ltr",
+    "search": {
+      "label": "Buscar en la ayuda",
+      "clear": "Borrar búsqueda",
+      "close": "Cerrar búsqueda",
+      "noResults": "No se encontraron resultados",
+      "details": "Mostrar detalles",
+      "select": "Seleccionar",
+      "navigate": "Navegar"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "código QR de pago",
+      "save": "Guardar código QR"
+    },
+    "languageMenuLabel": "Idioma",
+    "chrome": {
+      "skip": "Saltar al contenido",
+      "dark": "Cambiar al tema oscuro",
+      "light": "Cambiar al tema claro",
+      "notFound": "Página no encontrada",
+      "notFoundBody": "Esta página no existe o se ha movido.",
+      "home": "Volver al inicio"
+    }
+  },
+  "es-419": {
+    "brand": "Sapphire Star Codex",
+    "label": "Español (Latinoamérica)",
+    "lang": "es-419",
+    "path": "/es-419/",
+    "privacy": "Política de privacidad",
+    "support": "Apoya el proyecto",
+    "description": "Datos de Monster Hunter y búsqueda de armaduras para Wilds, Rise con Sunbreak y World con Iceborne.",
+    "nav": [
+      "Funciones",
+      "Preguntas frecuentes",
+      "Acerca de",
+      "Descargar"
+    ],
+    "contents": "En esta página",
+    "top": "Volver arriba",
+    "appearance": "Apariencia",
+    "menu": "Menú",
+    "screenshotLanguage": "es-419",
+    "badgeLocale": "es",
+    "dir": "ltr",
+    "search": {
+      "label": "Buscar en la ayuda",
+      "clear": "Borrar búsqueda",
+      "close": "Cerrar búsqueda",
+      "noResults": "No se encontraron resultados",
+      "details": "Mostrar detalles",
+      "select": "Seleccionar",
+      "navigate": "Navegar"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "código QR de pago",
+      "save": "Guardar código QR"
+    },
+    "languageMenuLabel": "Idioma",
+    "chrome": {
+      "skip": "Saltar al contenido",
+      "dark": "Cambiar al tema oscuro",
+      "light": "Cambiar al tema claro",
+      "notFound": "Página no encontrada",
+      "notFoundBody": "Esta página no existe o se movió.",
+      "home": "Volver al inicio"
+    }
+  },
+  "pt-br": {
+    "brand": "Sapphire Star Codex",
+    "label": "Português (Brasil)",
+    "lang": "pt-BR",
+    "path": "/pt-br/",
+    "privacy": "Política de privacidade",
+    "support": "Apoie o projeto",
+    "description": "Dados de Monster Hunter e busca de conjuntos para Wilds, Rise com Sunbreak e World com Iceborne.",
+    "nav": [
+      "Recursos",
+      "Perguntas frequentes",
+      "Sobre",
+      "Baixar"
+    ],
+    "contents": "Nesta página",
+    "top": "Voltar ao topo",
+    "appearance": "Aparência",
+    "menu": "Menu",
+    "screenshotLanguage": "pt-BR",
+    "badgeLocale": "en",
+    "dir": "ltr",
+    "search": {
+      "label": "Buscar na ajuda",
+      "clear": "Limpar busca",
+      "close": "Fechar busca",
+      "noResults": "Nenhum resultado encontrado",
+      "details": "Mostrar detalhes",
+      "select": "Selecionar",
+      "navigate": "Navegar"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "código QR de pagamento",
+      "save": "Salvar código QR"
+    },
+    "languageMenuLabel": "Idioma",
+    "chrome": {
+      "skip": "Pular para o conteúdo",
+      "dark": "Mudar para o tema escuro",
+      "light": "Mudar para o tema claro",
+      "notFound": "Página não encontrada",
+      "notFoundBody": "Esta página não existe ou foi movida.",
+      "home": "Voltar ao início"
+    }
+  },
+  "pl": {
+    "brand": "Sapphire Star Codex",
+    "label": "Polski",
+    "lang": "pl",
+    "path": "/pl/",
+    "privacy": "Polityka prywatności",
+    "support": "Wesprzyj projekt",
+    "description": "Dane Monster Hunter i wyszukiwanie zestawów do Wilds, Rise z Sunbreak oraz World z Iceborne.",
+    "nav": [
+      "Funkcje",
+      "Pytania i odpowiedzi",
+      "O aplikacji",
+      "Pobierz"
+    ],
+    "contents": "Na tej stronie",
+    "top": "Wróć na górę",
+    "appearance": "Wygląd",
+    "menu": "Menu",
+    "screenshotLanguage": "pl",
+    "badgeLocale": "en",
+    "dir": "ltr",
+    "search": {
+      "label": "Szukaj w pomocy",
+      "clear": "Wyczyść wyszukiwanie",
+      "close": "Zamknij wyszukiwanie",
+      "noResults": "Brak wyników",
+      "details": "Pokaż szczegóły",
+      "select": "Wybierz",
+      "navigate": "Nawiguj"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "kod QR płatności",
+      "save": "Zapisz kod QR"
+    },
+    "languageMenuLabel": "Język",
+    "chrome": {
+      "skip": "Przejdź do treści",
+      "dark": "Włącz ciemny motyw",
+      "light": "Włącz jasny motyw",
+      "notFound": "Nie znaleziono strony",
+      "notFoundBody": "Ta strona nie istnieje lub została przeniesiona.",
+      "home": "Wróć na stronę główną"
+    }
+  },
+  "ru": {
+    "brand": "Sapphire Star Codex",
+    "label": "Русский",
+    "lang": "ru",
+    "path": "/ru/",
+    "privacy": "Политика конфиденциальности",
+    "support": "Поддержать проект",
+    "description": "Данные Monster Hunter и подбор брони для Wilds, Rise с Sunbreak и World с Iceborne.",
+    "nav": [
+      "Возможности",
+      "Вопросы и ответы",
+      "О приложении",
+      "Скачать"
+    ],
+    "contents": "На этой странице",
+    "top": "Наверх",
+    "appearance": "Оформление",
+    "menu": "Меню",
+    "screenshotLanguage": "ru",
+    "badgeLocale": "en",
+    "dir": "ltr",
+    "search": {
+      "label": "Поиск по справке",
+      "clear": "Очистить поиск",
+      "close": "Закрыть поиск",
+      "noResults": "Ничего не найдено",
+      "details": "Показать подробности",
+      "select": "Выбрать",
+      "navigate": "Перейти"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "QR-код для оплаты",
+      "save": "Сохранить QR-код"
+    },
+    "languageMenuLabel": "Язык",
+    "chrome": {
+      "skip": "Перейти к содержимому",
+      "dark": "Включить тёмную тему",
+      "light": "Включить светлую тему",
+      "notFound": "Страница не найдена",
+      "notFoundBody": "Эта страница не существует или была перемещена.",
+      "home": "На главную"
+    }
+  },
+  "ar": {
+    "brand": "Sapphire Star Codex",
+    "label": "العربية",
+    "lang": "ar",
+    "path": "/ar/",
+    "privacy": "سياسة الخصوصية",
+    "support": "دعم المشروع",
+    "description": "بيانات Monster Hunter والبحث عن تشكيلات الدروع في Wilds وRise مع Sunbreak وWorld مع Iceborne.",
+    "nav": [
+      "الميزات",
+      "الأسئلة الشائعة",
+      "عن التطبيق",
+      "تنزيل"
+    ],
+    "contents": "في هذه الصفحة",
+    "top": "العودة إلى الأعلى",
+    "appearance": "المظهر",
+    "menu": "القائمة",
+    "screenshotLanguage": "ar",
+    "badgeLocale": "en",
+    "dir": "rtl",
+    "search": {
+      "label": "البحث في المساعدة",
+      "clear": "مسح البحث",
+      "close": "إغلاق البحث",
+      "noResults": "لم يتم العثور على نتائج",
+      "details": "عرض التفاصيل",
+      "select": "اختيار",
+      "navigate": "تنقّل"
+    },
+    "payment": {
+      "alipay": "Alipay",
+      "wechat": "WeChat Pay",
+      "qr": "رمز QR للدفع",
+      "save": "حفظ رمز QR"
+    },
+    "languageMenuLabel": "اللغة",
+    "chrome": {
+      "skip": "الانتقال إلى المحتوى",
+      "dark": "التبديل إلى المظهر الداكن",
+      "light": "التبديل إلى المظهر الفاتح",
+      "notFound": "الصفحة غير موجودة",
+      "notFoundBody": "هذه الصفحة غير موجودة أو تم نقلها.",
+      "home": "العودة إلى الرئيسية"
+    }
+  }
+}

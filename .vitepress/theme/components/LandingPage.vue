@@ -6,13 +6,10 @@ import { storeBadges } from '../stores'
 import LandingScaffold from './LandingScaffold.vue'
 
 const { lang } = useData()
-const localeKey = computed<LocaleKey>(() => {
-  if (lang.value === 'zh-Hans') return 'zh-hans'
-  if (lang.value === 'zh-Hant') return 'zh-hant'
-  if (lang.value.startsWith('ja')) return 'ja-jp'
-  return 'root'
-})
-const language = computed(() => ({ root: 'en', 'zh-hans': 'zh-Hans', 'zh-hant': 'zh-Hant', 'ja-jp': 'ja' } as const)[localeKey.value])
+const localeKey = computed<LocaleKey>(() =>
+  (Object.entries(locales).find(([, locale]) => locale.lang === lang.value)?.[0] as LocaleKey | undefined) ?? 'root'
+)
+const language = computed(() => locales[localeKey.value].screenshotLanguage)
 const relatedLinks = [{ label: 'Pocket Gallery', url: 'https://eurekaffeine.github.io/pocket-gallery/' }]
 </script>
 

@@ -8,7 +8,7 @@ import FeatureStory from './FeatureStory.vue'
 type Store = { id: string; name: string; badge: string | null; url: string | null; imageHeight: number }
 const props = defineProps<{
   copy: Copy
-  locale: { brand: string; path: string; nav: readonly string[]; support: string }
+  locale: { brand: string; path: string; nav: readonly string[]; support: string; dir?: 'ltr' | 'rtl' }
   language: keyof typeof manifest.locales
   stores: Store[]
   relatedLinks: { label: string; url: string }[]
@@ -43,7 +43,7 @@ const hero = [
             <a class="ssc-button secondary" href="#features">{{ copy.explore }}</a>
           </div>
         </div>
-        <div class="ssc-hero-visual">
+        <div class="ssc-hero-visual" dir="ltr">
           <div v-for="device in hero" :key="device.key" class="ssc-hero-device" :class="device.position">
             <img :src="screenshot(device.key)" :alt="copy.features.find(feature => feature.image === device.key)?.alt"
               :width="capture(device.key).width" :height="capture(device.key).height"
@@ -59,7 +59,7 @@ const hero = [
         <p>{{ copy.featureIntro }}</p>
       </section>
       <FeatureStory :key="language" :features="features" :label="copy.sectionTitle"
-        :previous-label="copy.previousFeature" :next-label="copy.nextFeature" />
+        :previous-label="copy.previousFeature" :next-label="copy.nextFeature" :rtl="locale.dir === 'rtl'" />
 
       <section id="download" class="ssc-download">
         <div class="ssc-shell">

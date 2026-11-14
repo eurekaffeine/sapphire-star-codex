@@ -18,6 +18,7 @@ const props = defineProps<{
   label: string
   previousLabel: string
   nextLabel: string
+  rtl?: boolean
 }>()
 const activeFeature = ref(0)
 const mobile = ref(false)
@@ -27,6 +28,7 @@ const dotElements = ref<HTMLButtonElement[]>([])
 let mediaQuery: MediaQueryList | undefined
 let observer: IntersectionObserver | undefined
 let scrollFrame = 0
+let pendingSelection: number | undefined
 let swipeStart: { id: number; x: number; y: number } | undefined
 
 function updateDesktopSelection() {
@@ -53,23 +55,33 @@ function handlePageScroll() {
 function observeChapters() {
   observer?.disconnect()
   if (!mobile.value || !chaptersElement.value) return
-  observer = new IntersectionObserver(entries => {
-    const visible = entries.filter(entry => entry.isIntersecting && entry.intersectionRatio >= 0.6)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-    if (visible) activeFeature.value = Number((visible.target as HTMLElement).dataset.featureIndex)
+  observer = new IntersectionObserver(() => {
+    const track = chaptersElement.value
+    if (!track) return
+    const bounds = track.getBoundingClientRect()
+    const visible = chapterElements.value.map((chapter, index) => {
+      const frame = chapter.getBoundingClientRect()
+      const width = Math.max(0, Math.min(bounds.right, frame.right) - Math.max(bounds.left, frame.left))
+      return { index, ratio: width / frame.width }
+    }).filter(item => item.ratio >= 0.6).sort((a, b) => b.ratio - a.ratio)[0]
+    if (!visible || (pendingSelection !== undefined && visible.index !== pendingSelection)) return
+    activeFeature.value = visible.index
+    pendingSelection = undefined
   }, { root: chaptersElement.value, threshold: [0.6] })
   chapterElements.value.forEach(chapter => observer?.observe(chapter))
 }
 
 function scrollToChapter(index: number, behavior: ScrollBehavior) {
   const chapter = chapterElements.value[index]
-  if (chapter) chaptersElement.value?.scrollTo({ left: chapter.offsetLeft, behavior })
+  const track = chaptersElement.value
+  if (chapter && track) track.scrollTo({ left: chapter.offsetLeft, behavior })
 }
 
 function selectFeature(index: number) {
   const next = Math.max(0, Math.min(index, props.features.length - 1))
   activeFeature.value = next
   if (mobile.value) {
+    pendingSelection = next
     scrollToChapter(next, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth')
   } else {
     chapterElements.value[next]?.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
@@ -78,8 +90,8 @@ function selectFeature(index: number) {
 
 function handleKeys(event: KeyboardEvent) {
   const last = props.features.length - 1
-  const next = event.key === 'ArrowRight' || (!mobile.value && event.key === 'ArrowDown')
-  const previous = event.key === 'ArrowLeft' || (!mobile.value && event.key === 'ArrowUp')
+  const next = event.key === (props.rtl ? 'ArrowLeft' : 'ArrowRight') || (!mobile.value && event.key === 'ArrowDown')
+  const previous = event.key === (props.rtl ? 'ArrowRight' : 'ArrowLeft') || (!mobile.value && event.key === 'ArrowUp')
   const target = next ? Math.min(last, activeFeature.value + 1)
     : previous ? Math.max(0, activeFeature.value - 1)
     : event.key === 'Home' ? 0
@@ -95,6 +107,7 @@ function handleKeys(event: KeyboardEvent) {
 }
 
 async function handleLayoutChange() {
+  pendingSelection = undefined
   mobile.value = mediaQuery?.matches ?? false
   await nextTick()
   observeChapters()
@@ -115,7 +128,7 @@ function finishSwipe(event: PointerEvent) {
   if (!start || start.id !== event.pointerId) return
   const x = event.clientX - start.x
   const y = event.clientY - start.y
-  if (Math.abs(x) >= 48 && Math.abs(x) > Math.abs(y) * 1.4) selectFeature(activeFeature.value + (x < 0 ? 1 : -1))
+  if (Math.abs(x) >= 48 && Math.abs(x) > Math.abs(y) * 1.4) selectFeature(activeFeature.value + (x < 0 ? 1 : -1) * (props.rtl ? -1 : 1))
 }
 
 onMounted(() => {
@@ -144,7 +157,7 @@ onBeforeUnmount(() => {
           data-device-frame="iPhone 18 Pro" :draggable="false" decoding="async" loading="eager">
       </figure>
     </div>
-    <div id="feature-chapters" ref="chaptersElement" class="ssc-chapters" :aria-label="label" @keydown="handleKeys">
+    <div id="feature-chapters" ref="chaptersElement" class="ssc-chapters" role="group" :aria-label="label" @pointerdown="pendingSelection = undefined" @wheel="pendingSelection = undefined" @keydown="handleKeys">
       <article v-for="(feature, index) in features" :id="`feature-chapter-${feature.id}`" :key="feature.id"
         ref="chapterElements" :data-feature-index="index" :class="{ active: activeFeature === index }"
         :tabindex="!mobile || activeFeature === index ? 0 : -1" :aria-hidden="mobile && activeFeature !== index ? true : undefined"
