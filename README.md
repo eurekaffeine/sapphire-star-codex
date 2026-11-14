@@ -5,7 +5,7 @@ Website code moved here from `MonsterHunterDex/sapphire-star-codex/` on 2026-11-
 
 | Branch | Purpose |
 |---|---|
-| `main` | Global source: English, Simplified Chinese, Traditional Chinese and Japanese |
+| `main` | Global source: fourteen languages, including Arabic RTL |
 | `china-version` | China source: Simplified Chinese, mainland download information and China QR codes |
 | `gh-pages` | Compiled global site served by GitHub Pages |
 
@@ -30,7 +30,7 @@ no app checkout, simulator, game data or Git LFS downloads are needed.
 
 - `.vitepress/`: configuration, components, styles, localized copy and store links.
 - `index.md`, `faq/`, `others/`, `support/`, `privacy/`: English pages.
-- `zh-hans/`, `zh-hant/`, `ja-jp/`: localized pages on the global branch.
+- Locale directories defined in `.vitepress/theme/locales.json`: fourteen matching page families.
 - `public/`: original licensed assets and optimized native screenshots with manifests.
 - `scripts/`: build validation, browser audits, deployment and optional asset tools.
 - `openspec/`: website specification and change records, excluded from the built site.
@@ -41,8 +41,8 @@ not private application history. See `ASSETS.md` for asset and license provenanc
 
 ## Verify
 
-`npm run build` validates 21 global pages, links, anchors, locale/base routing,
-store availability, original QR files and all 20 matching-language screenshots.
+`npm run build` validates 71 global pages, links, anchors, locale/base routing,
+store availability, original QR files and all 70 matching-language screenshots.
 `npm run audit:ux` verifies the responsive feature story and carousel, navigation, search, themes,
 keyboard and touch. `npm run audit:stores` checks download presentation and links.
 Both browser audits save ignored evidence under `.codex/audit-evidence/`.
@@ -84,3 +84,22 @@ bezels. Light-mode surfaces are white; primary rust #B8533A is from the existing
 app-icon palette. Screenshot assets, payment codes and regional routes remain
 owned by each branch. The current UX audit checks this story/carousel behavior,
 not the retired compact tab gallery or fixed four-size landing scale.
+
+
+## Expanded languages
+
+The global site follows the app's fourteen locales: English, Japanese, Simplified
+Chinese, Traditional Chinese, Korean, French, German, Spain Spanish, Latin American
+Spanish, Italian, Russian, Brazilian Portuguese, Polish and Arabic. Thai is deferred.
+`locales.json` defines URL, HTML language/direction, screenshot language and original
+store-artwork mapping; `copy.json` contains the localized landing copy. Supporting
+pages follow the same route families. Arabic controls follow RTL while native
+screenshot pixels are never mirrored. The China website remains zh-Hans-only.
+
+The 2026-11-14 screenshot set uses five newly captured native iOS views per language.
+Original PNGs and UI trees are retained privately in the app checkout under
+`.codex/audit-evidence/website-languages-20261114/captures/`; the public manifest
+records their paths, raw/rendered hashes, dates, device and build identity.
+Website translations are authored from the existing English content; professional
+native-speaker review is not claimed. App game-text fallbacks remain visible as
+rendered by the native app, rather than being painted over in screenshots.

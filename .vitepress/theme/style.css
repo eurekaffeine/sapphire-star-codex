@@ -176,3 +176,8 @@ a.ssc-store-badge:hover { transform: translateY(-2px); }
   html { scroll-behavior: auto; }
   .ssc-site *, .ssc-site *::before, .ssc-site *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* Native screenshot pixels stay unchanged; only website controls follow RTL. */
+[dir='rtl'] .ssc-carousel-arrow svg { transform: scaleX(-1); }
+[dir='rtl'] .ssc-site :is(h1, h2, h3, .ssc-eyebrow) { letter-spacing: normal; }
+[dir='rtl'] .VPNavBarTitle .logo { margin-right: 0; margin-left: 8px; }

@@ -2,14 +2,12 @@
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 import manifest from '../../../public/support/manifest.json'
+import { locales } from '../content'
 
 const { lang } = useData()
-const labels = computed(() => {
-  if (lang.value === 'zh-Hans') return { alipay: '支付宝', wechat: '微信支付', qr: '收款二维码', save: '保存二维码' }
-  if (lang.value === 'zh-Hant') return { alipay: '支付寶', wechat: '微信支付', qr: '收款 QR Code', save: '儲存 QR Code' }
-  if (lang.value.startsWith('ja')) return { alipay: 'Alipay', wechat: 'WeChat Pay', qr: '支援用QRコード', save: 'QRコードを保存' }
-  return { alipay: 'Alipay', wechat: 'WeChat Pay', qr: 'payment QR code', save: 'Save QR code' }
-})
+const labels = computed(() =>
+  (Object.values(locales).find(locale => locale.lang === lang.value) ?? locales.root).payment
+)
 const payments = computed(() => manifest.assets.map(asset => ({
   ...asset,
   label: asset.provider === 'alipay' ? labels.value.alipay : labels.value.wechat,

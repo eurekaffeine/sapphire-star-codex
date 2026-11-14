@@ -1,8 +1,12 @@
 # Website behavior
 
-The global edition serves English, Simplified Chinese, Traditional Chinese and
-Japanese under `/sapphire-star-codex/` on GitHub Pages. The China edition serves
-only Simplified Chinese at `/`, with an explicit link to the global website.
+The global edition serves fourteen languages: English, Japanese, Simplified Chinese,
+Traditional Chinese, Korean, French, German, Spanish (Spain), Spanish (Latin America),
+Italian, Russian, Brazilian Portuguese, Polish and Arabic. Routes are defined in
+`.vitepress/theme/locales.json`; Arabic uses RTL. Every locale uses its matching
+native app screenshots. Thai is not included. The China edition remains Simplified
+Chinese-only at `/`, with an explicit link to the global website.
+
 
 Both editions retain the real native feature screenshots, responsive five-feature
 story, keyboard/touch controls, local help search, light/dark mode, responsive

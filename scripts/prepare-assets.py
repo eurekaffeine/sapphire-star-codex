@@ -4,6 +4,7 @@ Run with Python + Pillow and a populated screenshot checkout (--source-root).
 from pathlib import Path
 import argparse
 import json
+import hashlib
 from PIL import Image, ImageDraw, ImageFont
 from iphone_frame import CAPTURE_TOPICS, frame_ios_capture
 
@@ -16,7 +17,7 @@ out = Path(__file__).resolve().parents[1] / 'public'
 sources = json.loads((out / 'screenshots/manifest.json').read_text())
 assert sources['captureSettings'] == {'silhouetteMonsters': False, 'showGameLogos': True}
 manifest = {'schemaVersion': 2, 'deviceFrame': 'iPhone 18 Pro', 'captureSettings': sources['captureSettings'], 'locales': {}}
-for language in ['en', 'zh-Hans', 'zh-Hant', 'ja']:
+for language in sources['locales']:
     directory = out / 'screenshots' / language
     directory.mkdir(parents=True, exist_ok=True)
     manifest['locales'][language] = {}
@@ -32,6 +33,8 @@ for language in ['en', 'zh-Hans', 'zh-Hant', 'ja']:
             **source, 'asset': f'{language}/{topic}.webp',
             'deviceFrame': 'iPhone 18 Pro', 'width': framed.width, 'height': framed.height,
             'bytes': destination.stat().st_size,
+            'sha256': hashlib.sha256(destination.read_bytes()).hexdigest(),
+            'captureSha256': hashlib.sha256((root / source['source']).read_bytes()).hexdigest(),
         }
 (out / 'screenshots/manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
 # Retire the previous shared/mixed-language screenshot files after all inputs succeed.
