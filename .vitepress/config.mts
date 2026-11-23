@@ -3,8 +3,6 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vitepress'
 import { locale } from './theme/content'
 
-// A China domain has not been selected. Local builds must not claim the global
-// Pages URL (or Pocket Gallery's domain) as their canonical deployment.
 const origin = process.env.SSC_SITE_ORIGIN?.replace(/\/$/, '')
 if (origin) {
   const url = new URL(origin)
@@ -15,6 +13,7 @@ if (origin) {
 
 export default defineConfig({
   base: '/',
+  buildConcurrency: 1,
   lang: locale.lang,
   title: '苍蓝星图鉴',
   description: locale.description,
@@ -45,6 +44,11 @@ export default defineConfig({
         ['meta', { property: 'og:url', content: `${origin}/${path}` }],
       )
     }
+  },
+  transformHtml(html, _id, context) {
+    return context.page === '404.md'
+      ? html.replace('<div id="app"></div>', () => `<div id="app">${context.content}</div>`)
+      : html
   },
   async buildEnd(siteConfig) {
     await writeFile(resolve(siteConfig.outDir, 'robots.txt'), origin

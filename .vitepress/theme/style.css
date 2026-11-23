@@ -113,8 +113,8 @@ a.ssc-store-badge:hover { transform: translateY(-2px); }
 .ssc-footer-brand strong { font-size: 18px; font-weight: 600; }
 .ssc-footer p { max-width: 670px; font-size: 14px; line-height: 1.7; }
 .ssc-footer-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: 14px; line-height: 1.7; }
-.ssc-footer-meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; }
-.ssc-footer small { font-size: 14px; line-height: 1.7; }
+.ssc-footer-meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0 1em; font-size: .75rem; line-height: 1.5; }
+.ssc-footer-meta small { font-size: inherit; }
 .ssc-document-policy { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-top: 32px; font-size: 14px; }
 .ssc-document-policy a { color: var(--ssc-accent); text-decoration: underline; text-underline-offset: 4px; }
 .VPNavBarTitle .title { font-weight: 600; }
