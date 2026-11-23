@@ -6,7 +6,6 @@ export function storeBadges() {
     // No verified mainland Android listing yet. Do not send visitors to the
     // global Play store or reuse another app's domestic listing.
     { id: 'android', name: 'Android 国内版', badge: null, url: links.androidChina, imageHeight: 48 },
-    // Pocket Gallery has no Chinese AppGallery artwork; retain its official badge.
-    { id: 'harmony', name: '华为应用市场', badge: 'app-gallery-badge-en.png', url: links.appGallery, imageHeight: 48 },
+    { id: 'harmony', name: 'HarmonyOS NEXT', badge: 'harmonyos-next-badge.webp', url: links.appGallery, imageHeight: 26 },
   ]
 }

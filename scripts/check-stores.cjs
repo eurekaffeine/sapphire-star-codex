@@ -59,7 +59,7 @@ const server = http.createServer(async (req,res) => {
           assert.equal(await section.locator('.pending[aria-disabled="true"]').count(),1);
           assert.equal(await section.locator('.pending a, .pending[tabindex]').count(),0);
           const images=section.locator('img');
-          const names=['app-store-badge-zh-hans.svg','app-gallery-badge-en.png'];
+          const names=['app-store-badge-zh-hans.svg','harmonyos-next-badge.webp'];
           for (let i=0;i<2;i++) {
             const image=images.nth(i);
             await image.evaluate(img=>img.decode());
@@ -72,6 +72,10 @@ const server = http.createServer(async (req,res) => {
             assert(geometry.left>=0 && geometry.right<=width+1);
             assert(Math.abs(geometry.width/geometry.height-geometry.nw/geometry.nh)<.02,'Badge distorted');
           }
+          const harmony=section.getByRole('link',{name:'打开商店: HarmonyOS NEXT',exact:true});
+          const wordmark=harmony.getByRole('img',{name:'HarmonyOS NEXT',exact:true});
+          assert.deepEqual(await wordmark.evaluate(img=>[img.naturalWidth,img.naturalHeight,img.getBoundingClientRect().height]),[464,70,26]);
+          assert.equal(await harmony.locator('.ssc-harmony-badge').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 255, 255)');
           await section.locator('a').focus();
           assert.equal(await page.evaluate(()=>document.activeElement?.closest('[data-store]')?.getAttribute('data-store')),'harmony');
           await page.keyboard.press('Tab');

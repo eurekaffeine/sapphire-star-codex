@@ -66,7 +66,7 @@ for (const locale of ['']) {
       || !section.includes('Android 国内版') || !section.includes('尚未上架')
       || !section.includes('rel="noopener noreferrer"')) errors.push('Incorrect China download links or availability')
     if (/Google Play|google-play|play\.google/.test(section)) errors.push('Global Android store remains in China downloads')
-    for (const badge of ['app-store-badge-zh-hans.svg', 'app-gallery-badge-en.png']) {
+    for (const badge of ['app-store-badge-zh-hans.svg', 'harmonyos-next-badge.webp']) {
       if (!section.includes(`${base}badges/${badge}`)) errors.push(`Wrong China badge: ${badge}`)
     }
     const captions = [...landing.matchAll(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/g)]

@@ -2,12 +2,16 @@
   "schemaVersion": 1,
   "source": "Pocket Gallery website",
   "sourceDirectory": "docs/.vuepress/public",
-  "artwork": "Unmodified store-provided badge artwork; trademarks remain with Apple, Google and Huawei.",
-  "appGalleryChineseFallback": "English, matching Pocket Gallery; no Chinese AppGallery badge is present in the reference.",
+  "artwork": "Unmodified badge artwork from Pocket Gallery; trademarks remain with their respective owners.",
   "assets": [
     {
-      "file": "app-gallery-badge-en.png",
-      "sha256": "01c4ba8ece9a2f76c7feba116979430baf27f3b8cbc63aae003b608277a02a00"
+      "file": "harmonyos-next-badge.webp",
+      "sha256": "363ec257662fd058c8856b3c25a62616272211769b96a6b631656914c4d8bdad",
+      "width": 464,
+      "height": 70,
+      "bytes": 3678,
+      "source": "https://github.com/eurekaffeine/pocket-gallery/blob/1d8d4b551b424d170d403c6bd03b4b23075014a8/docs/.vuepress/public/harmonyos-next-badge.webp",
+      "sourceGitBlob": "26211233b82bad72a0723ba9a04c4cfdbb061546"
     },
     {
       "file": "app-store-badge-zh-hans.svg",
