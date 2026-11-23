@@ -9,7 +9,8 @@ story, keyboard/touch controls, local help search, light/dark mode, responsive
 navigation, FAQ, About, support and privacy. Do not invent app capability or store
 availability. HarmonyOS has a verified AppGallery URL; other platforms remain
 pending until their listings are verified. China downloads use domestic Android
-availability, not Google Play.
+availability, not Google Play. Both editions use the same unmodified HarmonyOS
+NEXT wordmark and accessible platform name for the verified AppGallery link.
 
 Support is voluntary and grants no paid features or rewards. Payment occurs in
 Alipay/WeChat, not on this website. The two editions use their respective original

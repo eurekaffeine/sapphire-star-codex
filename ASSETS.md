@@ -30,9 +30,9 @@ Owner-authorized use is for voluntary support, with no paid features or rewards.
 
 ## Download badges
 
-Only the unchanged Simplified Chinese App Store SVG and official AppGallery PNG
-are shipped; their hashes remain in `public/badges/manifest.json`. Pocket Gallery
-has no Chinese AppGallery badge, so the existing official English artwork is kept.
+Only the unchanged Simplified Chinese App Store SVG and HarmonyOS NEXT WebP
+are shipped. The NEXT wordmark is identical to the global edition’s Pocket
+Gallery China asset; `public/badges/manifest.json` pins its source and checksum.
 These store marks remain their owners' property. The domestic Android row uses
 text while a genuine listing is pending; no Google Play badge is shipped.
 
