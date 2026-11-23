@@ -125,11 +125,13 @@ for (const name of imageAssets) {
   if ((await stat(file)).size > 300_000) errors.push(`Unoptimized website asset: ${name}`)
 }
 
-const registrationUrl = 'https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040'
-for (const page of ['', 'faq/', 'others/', 'privacy/', 'support/']) {
-  const content = html.get(resolve(root, page, 'index.html')) || ''
-  if (!content.includes(`href="${registrationUrl}"`) || !content.includes('苏公网安备32059002005040号')
-    || !content.includes(`src="${base}beian.png"`)) errors.push(`Missing China registration footer: ${page || '/'}`)
+const filingMarkers = ['href="https://beian.miit.gov.cn/"', '苏ICP备2023003413号-1',
+  'href="https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040"', '苏公网安备32059002005040号', `src="${base}beian.png"`]
+for (const [file, content] of html) {
+  const expected = file === resolve(root, 'index.html') ? 1 : 0
+  for (const marker of filingMarkers) {
+    if (content.split(marker).length - 1 !== expected) errors.push(`${relative(root, file)}: expected ${expected} occurrences of ${marker}`)
+  }
 }
 const registrationIcon = await readFile(resolve(root, 'beian.png'))
 if (createHash('sha256').update(registrationIcon).digest('hex') !== '8dfecad0dfcb3dc584f2c2447943eefb1fd65a058856eb0611e2c56ddc4c1fe1') errors.push('Modified registration icon')

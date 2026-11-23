@@ -4,6 +4,8 @@ import { withBase } from 'vitepress'
 
 <template>
   <div class="ssc-registration">
+    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">苏ICP备2023003413号-1</a>
+    <span aria-hidden="true">·</span>
     <a href="https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040"
       target="_blank" rel="noopener noreferrer">
       <img :src="withBase('/beian.png')" width="18" height="20" alt="" aria-hidden="true">
@@ -13,10 +15,12 @@ import { withBase } from 'vitepress'
 </template>
 
 <style scoped>
-.ssc-registration { flex-basis: 100%; min-width: 0; }
-.ssc-registration a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; max-width: 100%; color: var(--ssc-muted); font-size: var(--ssc-small); line-height: 1.7; text-decoration: none; }
+.ssc-registration { display: inline-flex; align-items: center; max-width: 100%; gap: .4em; }
+.ssc-registration a { display: inline-flex; align-items: center; gap: .3em; min-height: 44px; text-wrap: balance; }
 .ssc-registration img { flex-shrink: 0; width: 18px; height: 20px; }
-.ssc-registration span { min-width: 0; overflow-wrap: anywhere; }
 .ssc-registration a:hover { color: var(--ssc-accent); text-decoration: underline; text-underline-offset: 4px; }
 .ssc-registration a:focus-visible { outline: 2px solid var(--ssc-accent); outline-offset: 4px; }
+@media (max-width: 359px) {
+  .ssc-registration { font-family: "Arial Narrow", "Roboto Condensed", sans-serif-condensed, sans-serif; font-size: .6875rem; gap: .25em; }
+}
 </style>

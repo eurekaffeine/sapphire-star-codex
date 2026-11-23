@@ -52,6 +52,17 @@ async function centerChapter(page, key) {
   });
 }
 
+async function checkFilingRow(page) {
+  const links = page.locator('.ssc-footer-meta .ssc-registration a');
+  assert.deepEqual(await links.allTextContents(), ['苏ICP备2023003413号-1', '苏公网安备32059002005040号']);
+  assert.deepEqual(await links.evaluateAll(elements => elements.map(link => link.href)), [
+    'https://beian.miit.gov.cn/', 'https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040',
+  ]);
+  const [icp, police] = await Promise.all((await links.all()).map(link => link.boundingBox()));
+  assert(icp && police && Math.abs(icp.y - police.y) < 1 && icp.x + icp.width <= police.x, 'Filing links must share a row');
+  assert(icp.height >= 44 && police.height >= 44 && police.x + police.width <= page.viewportSize().width);
+}
+
 (async () => {
   await fs.mkdir(output, { recursive: true });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -143,7 +154,8 @@ async function centerChapter(page, key) {
         await inspect(page, `${name}/downloads`);
         if (width === 390 || width === 1440) await page.locator('#download').screenshot({ path: path.join(output, `${language}-downloads-${width}.png`) });
         if (china) {
-          assert.equal(await page.locator('.ssc-registration a').getAttribute('href'), 'https://beian.mps.gov.cn/#/query/webSearch?code=32059002005040');
+          await checkFilingRow(page);
+          if ([320, 390, 1440].includes(width)) await page.locator('.ssc-footer').screenshot({ path: path.join(output, `filing-${width}-light.png`) });
         }
       }
     }
@@ -156,6 +168,10 @@ async function centerChapter(page, key) {
     assert.equal(await page.locator('.ssc-site').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(0, 0, 0)');
     await page.screenshot({ path: path.join(output, 'dark-hero.png') });
     await inspect(page, 'dark/hero');
+    if (china) {
+      await checkFilingRow(page);
+      await page.locator('.ssc-footer').screenshot({ path: path.join(output, 'filing-1440-dark.png') });
+    }
     await page.getByRole('switch', { name: china ? '切换到浅色模式' : 'Switch to light theme' }).click();
     const searchName = china ? '搜索帮助' : 'Search';
     await page.getByRole('button', { name: searchName, exact: true }).click();
@@ -175,7 +191,7 @@ async function centerChapter(page, key) {
         await page.setViewportSize({ width, height: 900 });
         await page.goto(origin + (china ? '' : 'zh-hans/') + route, { waitUntil: 'networkidle' });
         await inspect(page, `documents/${route}/${width}`);
-        if (china) assert.equal(await page.locator('.ssc-registration').count(), 1);
+        if (china) assert.equal(await page.locator('a[href*="beian."]').count(), 0);
       }
     }
     await page.setViewportSize({ width: 390, height: 844 });

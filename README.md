@@ -26,26 +26,21 @@ longer lives inside the app monorepo.
 
 ## Hosting
 
-This branch is prepared for a static China host at `/`. The domain and host have
-not been selected. Default builds are previews: no canonical URL or sitemap, and
+The China edition is hosted at `https://sapphire-star-codex.pocket-gallery.cn/`
+on Alibaba Cloud ECS. Default builds are previews: no canonical URL or sitemap, and
 `noindex` metadata plus `Disallow: /` in robots.txt.
 
-When a domain is confirmed, build with its HTTPS origin:
+For production, build with its HTTPS origin:
 
 ```sh
-SSC_SITE_ORIGIN=https://your-confirmed-domain.example npm run build
+SSC_SITE_ORIGIN=https://sapphire-star-codex.pocket-gallery.cn npm run build
 ```
 
-That value supplies canonical/social URLs, sitemap and robots.txt. It must contain
-only the origin, without a path. Replace the illustrative domain with the real one;
-do not publish the example. Update the privacy policy with the actual hosting
-provider and add registration details only when confirmed for this site.
-
-Publish only `.vitepress/dist/` to the chosen host. The global GitHub Pages deploy
-command is deliberately absent from this regional branch. The footer displays the
-owner-provided public-security record 苏公网安备32059002005040号 and its exact lookup
-link. No ICP record is specified. Domain and hosting credentials are configured
-separately for this site.
+That value supplies canonical/social URLs, sitemap and robots.txt. Publish only
+the built `.vitepress/dist/` site through the Sapphire ECS release process, without
+overlaying another footer. The homepage alone links to 苏ICP备2023003413号-1 and
+苏公网安备32059002005040号. The global GitHub Pages deploy command is deliberately
+absent from this regional branch.
 
 The global website remains at <https://eurekaffeine.github.io/sapphire-star-codex/>.
 `.github/workflows/website.yml` validates this branch and produces a
